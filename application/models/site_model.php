@@ -74,10 +74,12 @@ public function add_temp_user($key){
 						
 				}
 	///////////////////////////////////////////login method////////////////////////////////////////////
-	  public function check_can_log_in($username, $password){
-       
+	  public function check_can_log_in(){
+        $username=  $this->input->post('email');
+        $password= $this->input->post('password');
+		
         $query = "select id ,email from users where email=? and password=?  ";
-      $result=$this->db->query($query,array($username,$password,$password));
+      $result=$this->db->query($query,array($username,$password));
        if ( $result) {
           $result=array('id'=>$result->row(0)->id, 'email'=>$result->row(0)->email);
 	   return  $result; 
@@ -94,7 +96,7 @@ public function add_temp_user($key){
       // $password= $this->db->where('password', md5($this->input->post('password')));
         
         $query = "select id from users where email=? and password=?";
-        $result=$this->db->query($query,array($username,$password,$password));
+        $result=$this->db->query($query,array($username,$password));
         
         if($result->num_rows() == 1){
             return true;
@@ -105,12 +107,12 @@ public function add_temp_user($key){
     }
 	////////////////////////////////////////////////////////////
 	function select_user($id){
-		$query="select id,email,username,phone,country,city,address,profile_pic,zip_code from user where id=?";
+		$query="select id,email,name,phone,job,prof,city,pic,hobbit from users where id=?";
 		 $result=$this->db->query($query,$id);
 		 if($result->num_rows() == 1){
-			 $data_result=array('id'=>$result->row(0)->id,'username'=>$result->row(0)->username, 'address'=>$result->row(0)->address ,
-				                   'city'=>$result->row(0)->city,'country'=>$result->row(0)->country,'email'=>$result->row(0)->email,'pic'=>$result->row(0)->profile_pic,
-								   'phone'=>$result->row(0)->phone,'zip_code'=>$result->row(0)->zip_code
+			 $data_result=array('id'=>$result->row(0)->id,'username'=>$result->row(0)->name, 'email'=>$result->row(0)->email ,
+				                   'city'=>$result->row(0)->city,'job'=>$result->row(0)->job,'prof'=>$result->row(0)->prof,'pic'=>$result->row(0)->pic,
+								   'phone'=>$result->row(0)->phone,'hobbit'=>$result->row(0)->hobbit
 								     );
 				return  $data_result; 
 			 

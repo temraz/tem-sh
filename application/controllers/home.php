@@ -107,13 +107,10 @@ class Home extends CI_Controller {
 
             $this->load->model('site_model');
 
-            $username = $this->input->post('email');
-            $password = $this->input->post('password');
-            if ($this->site_model->check_can_log_in($email, $password)) {
-                $username = $this->input->post('email');
-                $password = $this->input->post('password');
+            if ($this->site_model->check_can_log_in()) {
+               
 
-                $user = $this->site_model->check_can_log_in($email, $password);
+                $user = $this->site_model->check_can_log_in();
 
                 $login_data = array("logged_in" => true, "user_id" => $user['id'], "user_email" => $user['email']);
                 $this->session->set_userdata($login_data);
