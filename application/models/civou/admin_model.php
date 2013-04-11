@@ -1,6 +1,6 @@
 <?php
 
-class Site_model extends CI_Model {
+class Admin_model extends CI_Model {
 public function add_temp_user($key){
 					
 					 
@@ -74,12 +74,12 @@ public function add_temp_user($key){
 						
 				}
 	///////////////////////////////////////////login method////////////////////////////////////////////
-	  public function check_can_log_in($username, $password){
+	  public function check_can_log_in($admin_name, $password){
        
-        $query = "select id ,email from users where email=? and password=?  ";
-      $result=$this->db->query($query,array($username,$password,$password));
+        $query = "select id from admin where admin_name=? and password=?  ";
+      $result=$this->db->query($query,array($admin_name,$password,$password));
        if ( $result) {
-          $result=array('id'=>$result->row(0)->id, 'email'=>$result->row(0)->email);
+          $result=array('id'=>$result->row(0)->id);
 	   return  $result; 
         } else {
             return false;
@@ -87,14 +87,14 @@ public function add_temp_user($key){
         }
 		///////////////////////////////////////////////////////////////
 		    public function can_log_in(){
-        $username=  $this->input->post('email');
+        $admin_name=  $this->input->post('admin');
         $password= md5($this->input->post('password'));
         
       // $emaiil= $this->db->where('email', $this->input->post('email'));
       // $password= $this->db->where('password', md5($this->input->post('password')));
         
-        $query = "select id from users where email=? and password=?";
-        $result=$this->db->query($query,array($username,$password,$password));
+        $query = "select id from admin where admin_name=? and password=?";
+        $result=$this->db->query($query,array($admin_name,$password,$password));
         
         if($result->num_rows() == 1){
             return true;
@@ -163,13 +163,45 @@ function select_contacts(){
             return false;
         }
 			}
-		/////////////////////////////////
-public function get_event(){
-			 $query = $this->db->get('events');
+		
+	
+//////////////////////
+public function get_unconfirmed_user(){
+	$this->db->where('confirm',0);
+			 $query = $this->db->get('users');
 	  return $query->result();
 	  }	
-	 
-	
+	  //////////////////////
+	  public function get_confirmed_user(){
+	$this->db->where('confirm',1);
+			 $query = $this->db->get('users');
+	  return $query->result();
+	  }	
+	  //////////////////////
+	  public function confirme_user($id){
+		  $data = array('confirm' => 1);
+	$this->db->where('id',$id);
+			 $query = $this->db->update('users',$data);
+	  }	
+	  //////////////////////
+public function get_temp_by_id($id){
+     	$this->db->where('id',$id);
+			 $query = $this->db->get('temp_users');
+	  return $query->result();
+	  }	
+	  
+/////////////////////////////////
+public function get_all_user(){
+			 $query = $this->db->get('users');
+	  return $query->result();
+	  }	
+/////////////////////////////////
+	   /////////////////////////////////
+	  
+	  public function delete_temp($id){
+		 $this->db->where('id',$id);
+			$this->db->delete('temp_users'); 
+		  }
 }
 
 

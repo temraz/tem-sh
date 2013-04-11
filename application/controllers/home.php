@@ -6,7 +6,19 @@ class Home extends CI_Controller {
 	{
 		$this->load->view('home');
 	}
+	
 ////////////////////////////////////////////
+public function profile()
+	{
+		$this->load->view('profile');
+	}
+	//////////////////////////
+	public function events()
+	{
+		$this->load->model('site_model');
+		$data['all_events']=$this->site_model->get_event();
+		$this->load->view('events',$data);
+	}
  ///////////////////////////////////////////////////////////////////////////////////// validate user
     public function sign_user_validation() {
         $this->load->library('form_validation');

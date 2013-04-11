@@ -1,3 +1,5 @@
+<?php include('all_governorates.php'); ?>
+<?php include('all_jobs.php'); ?>
 <!DOCTYPE html>
 <!--[if IE 8]>			<html class="ie ie8"> <![endif]-->
 <!--[if IE 9]>			<html class="ie ie9"> <![endif]-->
@@ -502,22 +504,34 @@
 										<label>Mobile Number *</label>
 										<input type="text" value="<?php echo $this->input->post('mobile') ?>" maxlength="11" class="span3" name="mobile" id="mobile" required>
 									</div>
+                                   
                                     <div class="span3 control-group">
-										<label>Birthday *</label>
-										<input type="date" value="<?php echo $this->input->post('birthday') ?>" maxlength="10" class="span3" name="birthday" id="date" required>
+										<label>City *</label>
+										 <select name="city" size="1" class="span3" required>
+   <?php for($i=0;$i< count($governorates_list);$i++) {
+  echo " <option value=\"$governorates_list[$i]\"";
+    echo ">$governorates_list[$i]</option>";
+   } ?> 
+   </select>  
 									</div>
                                     <div class="span3 control-group">
 										<label>Profession *</label>
-										<input type="text" value="<?php echo $this->input->post('profession') ?>" maxlength="25" class="span3" name="profession"  required>
+										 <select name="Profession" size="1" class="span3" required>
+   <?php for($i=0;$i< count($jobs_list);$i++) {
+  echo " <option value=\"$jobs_list[$i]\"";
+    echo ">$jobs_list[$i]</option>";
+   } ?> 
+   </select>
 									</div>
                                     <div class="span3 control-group">
 										<label>Job Field *</label>
 										<input type="text" value="<?php echo $this->input->post('field') ?>" maxlength="25" class="span3" name="field"  required>
 									</div>
-                                    <div class="span3 control-group">
-										<label>City *</label>
-										<input type="text" value="<?php echo $this->input->post('city') ?>" maxlength="25" class="span3" name="city"  required>
+                                     <div class="span3 control-group">
+										<label>Birthday *</label>
+										<input type="date" value="<?php echo $this->input->post('birthday') ?>" maxlength="10" class="span3" name="birthday" id="date" required>
 									</div>
+                                    
                                     <div class="span6 control-group">
 										<label>Hobbies *</label>
 										<textarea maxlength="300"  rows="5" class="span6" name="hobbies" id="message"><?php echo $this->input->post('hobbies') ?></textarea>
