@@ -83,7 +83,7 @@
 								
 														
 															<img class="thumbnail" src="<?php echo base_url();?>images/sheir.jpg"  alt="" style="float:left ; margin-top:10px">
-														<h3 style="margin-top:55px ;float:left  ; margin-left:15px ; color:#fff">Mohamed Samy</h3>
+														<h3 style="margin-top:55px ;float:left  ; margin-left:15px ; color:#fff;text-transform:capitalize"><?php if(isset($username)){echo $username ;}?></h3>
 													
 							</div>
 						</div>
@@ -102,10 +102,10 @@
                                                     </div>
                                                     <div  style="float:left ; margin-left:10px">
                                                     <div class="post-meta">
-															<strong> Mohamed Samy</strong>
+															<strong style="text-transform:capitalize"> <?php if(isset($username)){echo $username ;}?></strong>
 													</div>
                                                        <div class="post-meta">
-															<small>Web Developer</small>
+															<small><?php if(isset($job)){echo $job ;}?></small>
 													</div>
                                                     <div class="post-meta">
 														<i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i>
@@ -115,7 +115,7 @@
 											</div>		
                                             
 
-								<h4 style="float:left">About Mohamed Samy</h4><div class="icon-edit" style="float:left ; margin-left:5px ; margin-top:8px"><a href="#">edit</a></div>
+								<h4 style="float:left">About <span style="text-transform:capitalize" > <?php if(isset($username)){echo $username ;}?></span></h4><div class="icon-edit" style="float:left ; margin-left:5px ; margin-top:8px"><a href="#">edit</a></div>
 								<p style="float:right">Nulla nunc dui, tristique in semper vel, congue sed ligula. Nam dolor ligula, faucibus id sodales in, auctor fringilla libero. Nulla nunc dui, tristique in semper vel. Nam dolor ligula, faucibus id sodales in, auctor fringilla libero. </p>
 
 
@@ -285,7 +285,7 @@
                         
                         <div class="row" style="float:left ; margin-left:0">
                         
-                        <h3 style="color:#09c ; margin-left:30px"> <i style="color:#000 ; font-style:normal"> Mohamed Samy</i>'s Activities</h3>
+                        <h3 style="color:#09c ; margin-left:30px"> <i style="color:#000 ; font-style:normal;text-transform:capitalize"> <?php if(isset($username)){echo $username ;}?></i>'s Activities</h3>
                         
 						<ul class="portfolio-list sort-destination" data-sort-id="portfolio">
 							<li class="span3 isotope-item websites">
