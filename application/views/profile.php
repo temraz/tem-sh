@@ -20,6 +20,7 @@
 		<!-- Libs CSS -->
 		<link rel="stylesheet" href="<?php echo base_url();?>css/bootstrap.css" tppabs="http://www.crivos.com/themes/porto/css/bootstrap.css">
 		<link rel="stylesheet" href="<?php echo base_url();?>css/font-awesome.css" tppabs="http://www.crivos.com/themes/porto/css/fonts/font-awesome/css/font-awesome.css">
+        <link rel="stylesheet" href="<?php echo base_url(); ?>css/upload_file.css" type="text/css" media="screen">
 		<link rel="stylesheet" href="<?php echo base_url();?>css/flexslider.css" tppabs="http://www.crivos.com/themes/porto/vendor/flexslider/flexslider.css" media="screen" />
 		<link rel="stylesheet" href="<?php echo base_url();?>css/jquery.fancybox.css" tppabs="http://www.crivos.com/themes/porto/vendor/fancybox/jquery.fancybox.css" media="screen" />
 
@@ -100,6 +101,7 @@
 															<img src="<?php echo base_url();?>images/sheir.jpg" >
 														
                                                     </div>
+                                                    
                                                     <div  style="float:left ; margin-left:10px">
                                                     <div class="post-meta">
 															<strong style="text-transform:capitalize"> <?php if(isset($username)){echo $username ;}?></strong>
@@ -113,7 +115,25 @@
                                                     <div class="icon-edit"><a href="#">edit</a></div>
                                                     </div>
 											</div>		
-                                            
+                                             <?php
+                                if (isset($owner)) {
+                                    if ($owner == 'yes') {
+                                        ?>
+                                        <td>
+                                            <?php echo form_open_multipart('user/upload_pic'); ?>
+
+
+                                            <div id='file_browse_wrapper'>
+                                                <?php echo form_upload(array('id' => 'file_browse', 'name' => 'userfile')); ?>
+                                            </div>
+
+
+                                            <?php echo form_submit(array('id' => 'upload_button', 'name' => 'post_upload2'), 'upload'); ?>
+                                            <?php echo form_close(); ?></td>
+                                        <?php
+                                    }
+                                }
+                                ?> 
 
 								<h4 style="float:left">About <span style="text-transform:capitalize" > <?php if(isset($username)){echo $username ;}?></span></h4><div class="icon-edit" style="float:left ; margin-left:5px ; margin-top:8px"><a href="#">edit</a></div>
 								<p style="float:right">Nulla nunc dui, tristique in semper vel, congue sed ligula. Nam dolor ligula, faucibus id sodales in, auctor fringilla libero. Nulla nunc dui, tristique in semper vel. Nam dolor ligula, faucibus id sodales in, auctor fringilla libero. </p>

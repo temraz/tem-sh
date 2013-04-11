@@ -78,7 +78,7 @@ public function add_temp_user($key){
         $username=  $this->input->post('email');
         $password= $this->input->post('password');
 		
-        $query = "select id ,email from users where email=? and password=?  ";
+        $query = "select id ,email from users where email=? and password=? and confirm =1 ";
       $result=$this->db->query($query,array($username,$password));
        if ( $result) {
           $result=array('id'=>$result->row(0)->id, 'email'=>$result->row(0)->email);
@@ -95,7 +95,7 @@ public function add_temp_user($key){
       // $emaiil= $this->db->where('email', $this->input->post('email'));
       // $password= $this->db->where('password', md5($this->input->post('password')));
         
-        $query = "select id from users where email=? and password=?";
+        $query = "select id from users where email=? and password=? and confirm =1";
         $result=$this->db->query($query,array($username,$password));
         
         if($result->num_rows() == 1){

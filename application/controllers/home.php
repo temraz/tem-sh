@@ -19,6 +19,17 @@ public function profile()
 		$data['all_events']=$this->site_model->get_event();
 		$this->load->view('events',$data);
 	}
+        //////////////////////////
+        function portfolio(){
+            $this->load->view('photo_gallery');    
+        }
+        
+        //////////////////////////
+        function contact_us(){
+            $this->load->view('contact-us');
+            
+        } 
+        
  ///////////////////////////////////////////////////////////////////////////////////// validate user
     public function sign_user_validation() {
         $this->load->library('form_validation');
@@ -30,7 +41,7 @@ public function profile()
 		 $this->form_validation->set_rules('phone', 'Phone', 'required|max_length[11]|trim|xss_clean|numeric');
 		  $this->form_validation->set_rules('mobile', 'Mobile', 'required|max_length[11]|trim|xss_clean|numeric');
 		 $this->form_validation->set_rules('birthday', 'birthday', 'required|trim|xss_clean|max_length[10]|');
-		 $this->form_validation->set_rules('profession', 'profession', 'required|trim|xss_clean|max_length[25]|');  
+		 $this->form_validation->set_rules('Profession', 'profession', 'required|trim|xss_clean|max_length[30]');  
 		 $this->form_validation->set_rules('field', 'Jop field', 'required|trim|xss_clean|max_length[25]|');  
 		
        

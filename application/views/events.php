@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <!--[if IE 8]>			<html class="ie ie8"> <![endif]-->
 <!--[if IE 9]>			<html class="ie ie9"> <![endif]-->
-<!--[if gt IE 9]><!-->	<html> <!--<![endif]-->
-	<head>
+<!--[if gt IE 9]><!-->	<html> <!--<![endif]--><head>
 
 		<!-- Basic -->
 		<meta charset="utf-8">
@@ -62,6 +61,12 @@
 		<meta property="og:description" content="Porto - Responsive HTML5 Template"/>
 
 	</head>
+    
+	<style type="text/css">
+    #event_img{width:300px; height:180px;}
+    </style>
+    
+    
 	<body >
 
 	  <div class="body">
@@ -74,7 +79,7 @@
 						<div class="row">
 							<div class="span12">
 								<ul class="breadcrumb">
-									<li><a href="index.html" tppabs="http://www.crivos.com/themes/porto/index.html">Home</a> <span class="divider">/</span></li>
+									<li><a href="<?php echo base_url();?>home/" >Home</a> <span class="divider">/</span></li>
 								
 								</ul>
 							</div>
@@ -95,7 +100,7 @@
 
 					<hr />
 
-					<div class="row">
+					<div class="row" >
 
 						<ul class="team-list sort-destination" data-sort-id="team">
                         <?php foreach ($all_events as $row){
@@ -106,22 +111,23 @@
 							$facebook = $row->facebook_url;
 							$twitter = $row->twitter_url;
 							?>
-							<li class="span3 isotope-item leadership">
+							<li class="span3 isotope-item leadership" style="height:400px;">
 								<div class="team-item thumbnail">
 									<a href="#" class="thumb-info team">
-										<img src="<?php echo base_url()."images/events/".$event_logo ;?>" width="300" height="200" >
+										<img id="event_img" src="<?php echo base_url()."images/events/".$event_logo ;?>" width="300" height="200" >
 										<span class="thumb-info-title">
-											<span class="thumb-info-inner"><?php echo $event_name ;?></span>
-											<span class="thumb-info-type"><?php echo $event_date ;?></span>
+											<span class="thumb-info-inner"><?php  echo  character_limiter($event_name, 18); ?></span>
+											<span class="thumb-info-type"><?php echo  $event_date ;?></span>
 										</span>
 									</a>
 									<span class="thumb-info-caption">
-										<p><?php echo $about_event ;?></p>
+										<p><?php echo  character_limiter($about_event, 50); ?></p>
 										<div class="thumb-info-social-icons">
 											<a href="<?php echo $facebook ;?>"><i class="icon-facebook"></i><span>Facebook</span></a>
 											<a href="<?php echo $twitter ;?>"><i class="icon-twitter"></i><span>Twitter</span></a>
 										
 										</div>
+                                      
 									</span>
 								</div>
 							</li>
