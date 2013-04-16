@@ -82,8 +82,7 @@
 						<div class="row">
 							<div class="span12">
 								
-														
-															<img class="thumbnail" src="<?php echo base_url();?>images/sheir.jpg"  alt="" style="float:left ; margin-top:10px">
+							<img class="thumbnail" src="<?php echo base_url();?>images/profile/thumb_profile/<?php if(isset($pic)){ echo $pic ; } ?>"  alt="" style="float:left ; margin-top:10px"  width="100"  > 
 														<h3 style="margin-top:55px ;float:left  ; margin-left:15px ; color:#fff;text-transform:capitalize"><?php if(isset($username)){echo $username ;}?></h3>
 													
 							</div>
@@ -98,7 +97,7 @@
 							<aside class="sidebar">
 							<div class="span6" style="padding-bottom:20px">
 								<div class="thumbnail" style="float:left ; margin-left:-30px">
-															<img src="<?php echo base_url();?>images/sheir.jpg" >
+								<img src="<?php echo base_url();?>images/profile/thumb_profile/<?php if(isset($pic)){ echo $pic ; } ?>" height="140" width="100" >
 														
                                                     </div>
                                                     
@@ -136,7 +135,9 @@
                                 ?> 
 
 								<h4 style="float:left">About <span style="text-transform:capitalize" > <?php if(isset($username)){echo $username ;}?></span></h4><div class="icon-edit" style="float:left ; margin-left:5px ; margin-top:8px"><a href="#">edit</a></div>
-								<p style="float:right">Nulla nunc dui, tristique in semper vel, congue sed ligula. Nam dolor ligula, faucibus id sodales in, auctor fringilla libero. Nulla nunc dui, tristique in semper vel. Nam dolor ligula, faucibus id sodales in, auctor fringilla libero. </p>
+								<p style="float:right;min-height: 60px;">
+									<?php if(isset($hobbit)){echo $hobbit ;}?>
+								</p>
 
 
 								<div class="tabs">

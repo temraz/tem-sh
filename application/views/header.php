@@ -39,9 +39,18 @@
 								<a href="<?php echo base_url();?>home/">Home</a>
 							</li>
                             
-                            <li>
-								<a href="#" >About Us</a>
+			    
+                                                            <?php if( ! $this->session->userdata('logged_in')){?>
+                                                         <li>
+								<a href="#" >Sign Up</a>
 							</li>
+							<?php }?>
+							 <?php if( ! $this->session->userdata('logged_in')){?>
+                                                         <li>
+								<a href="#" >Log In</a>
+							</li>
+							<?php }?>
+                            
                             <li>
 								<a href="<?php echo base_url();?>home/portfolio" >Portfolio</a>
 							</li>
@@ -49,15 +58,19 @@
                                                         
                             <li>
                                 <a href="<?php echo base_url();?>home/events" >events</a>
-							</li>
-                          
-                            <li>
-								<a href="#" >Sign Up</a>
+                            </li>
+							 
+							 <li>
+								<a href="#" >About Us</a>
 							</li>
                                <li>
 								<a href="<?php echo base_url();?>home/contact_us" >Contact Us</a>
 							</li>
-                            
+                            <?php if( $this->session->userdata('logged_in')){?>
+                                                         <li>
+								<a href="<?php echo base_url();?>home/logout" >Log Out</a>
+							</li>
+							<?php }?>
 						</ul>
 					</nav>
 				</div>

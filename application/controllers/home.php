@@ -26,7 +26,7 @@ public function profile()
         
         //////////////////////////
         function contact_us(){
-            $this->load->view('contact-us');
+            $this->load->view('contact_us');
             
         } 
         
@@ -47,7 +47,7 @@ public function profile()
        
         $this->form_validation->set_rules('city', 'city', 'required|max_length[30]|trim|xss_clean');
        
-         $this->form_validation->set_rules('hobbies', 'hobbies', 'required|trim|xss_clean|max_length[300]');
+         $this->form_validation->set_rules('hobbies', 'hobbies', 'required|trim|xss_clean|max_length[300]|min_length[60]');
        
        
 
@@ -156,7 +156,11 @@ public function profile()
             return false;
         }
     }	
-	
+/////////////////////////////////////////
+function logout() {
+        $this->session->sess_destroy();
+        redirect('home/');
+    }
 	
 	
 	
