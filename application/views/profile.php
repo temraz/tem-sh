@@ -17,12 +17,15 @@
 		<!-- Web Fonts  -->
 		<link href="css-family=Open+Sans-300,400,600,700,800-Shadows+Into+Light.css" tppabs="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800|Shadows+Into+Light" rel="stylesheet" type="text/css">
 
+		
+		<link rel="stylesheet" href="<?php echo base_url();?>css/styles.css"  media="screen" />
 		<!-- Libs CSS -->
 		<link rel="stylesheet" href="<?php echo base_url();?>css/bootstrap.css" tppabs="http://www.crivos.com/themes/porto/css/bootstrap.css">
 		<link rel="stylesheet" href="<?php echo base_url();?>css/font-awesome.css" tppabs="http://www.crivos.com/themes/porto/css/fonts/font-awesome/css/font-awesome.css">
         <link rel="stylesheet" href="<?php echo base_url(); ?>css/upload_file.css" type="text/css" media="screen">
 		<link rel="stylesheet" href="<?php echo base_url();?>css/flexslider.css" tppabs="http://www.crivos.com/themes/porto/vendor/flexslider/flexslider.css" media="screen" />
 		<link rel="stylesheet" href="<?php echo base_url();?>css/jquery.fancybox.css" tppabs="http://www.crivos.com/themes/porto/vendor/fancybox/jquery.fancybox.css" media="screen" />
+		
 
 		<!-- Theme CSS -->
 		<link rel="stylesheet" href="<?php echo base_url();?>css/theme.css" tppabs="http://www.crivos.com/themes/porto/css/theme.css">
@@ -61,7 +64,8 @@
 		<meta property="og:site_name" content="Porto"/>
 		<meta property="fb:app_id" content=""/> <!-- Use your own API Key. Go to http://developers.facebook.com/ for more information. -->
 		<meta property="og:description" content="Porto - Responsive HTML5 Template"/>
-
+		
+                <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
 	</head>
 	<body >
 
@@ -501,6 +505,80 @@
 					</div>
 
 				</div>
+
+				
+	<?php if( $time=='' && $faculty=='' && $travel=='' && $about=='' ){?>			
+<div id="modal">
+	<div id="heading">
+		You must fill out this fields first.
+	</div>
+
+	<div id="content">
+		
+                                <?php echo form_open('user/add_user_step2'); ?>
+                                
+                                <div id="valid" style="color:#F00">
+                                <?php  echo validation_errors(); ?>
+                                </div>
+                        
+								<div class="row controls" id="contactForm" style="padding: 10px 0 10px 45px;;">
+									<div class="span3 control-group">
+										<label>Donated Time by Houres *</label>
+										<input type="text" value="" maxlength="100" class="span3" name="time" id="email" required>
+									</div>
+									<div class="span3 control-group">
+										<label>Can You Travel With us ? *</label>
+										 <select name="travel" size="1" class="span3" required>
+								
+										<option value="" >Select</option>
+										<option value="yes" >yes</option>
+										<option value="no" >No</option>
+								
+										</select>
+									</div>
+									<div class="span3 control-group">
+										<label>Your Faculty *</label>
+										 <select name="faculty" size="1" class="span3" required>
+								
+										<option value="" >Select</option>
+										<option value="yes" >yes</option>
+										<option value="no" >No</option>
+								
+										</select>
+									</div>
+									 <div class="span3 control-group">
+										<label>How can you help us *</label>
+										<textarea maxlength="300"  rows="5" class="span3" style="resize: none;" name="about" id="message"><?php echo $this->input->post('about') ?></textarea>
+									</div>
+								</div>
+								
+								<div class="btn-toolbar">
+									<input type="submit" value="Save" style="margin-left: 45px;margin-top: -40px" class="btn btn-primary btn-large" data-loading-text="Loading...">
+								</div>
+							 <?php echo form_close();?>
+	</div>
+	<?php }?>
+</div>
+
+
+
+	<!--jQuery-->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+	<script src="<?php echo base_url();?>js/jquery.reveal.js"></script>
+
+	<script type="text/javascript">
+		$(document).ready(function() {
+			  // Button which will activate our modal
+			   	$('#modal').reveal({ // The item which will be opened with reveal
+				  	animation: 'fade',                   // fade, fadeAndPop, none
+					animationspeed: 600,                       // how fast animtions are
+					closeonbackgroundclick: true,              // if you click background will modal close?
+					dismissmodalclass: 'close'    // the class of a button or element that will close an open modal
+				});
+			return false;
+			});
+		
+	</script>
 
 			</div>
 

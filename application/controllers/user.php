@@ -29,6 +29,16 @@ class User extends CI_Controller {
 					 }else{
 						 $data['owner']='no';
 						 }
+						 
+				if($this->site_model->select_user_step2($id)){
+				    $user_data2=$this->site_model->select_user_step2($id);
+				    $data['faculty']=$user_data2['faculty'];
+				    $data['travel']=$user_data2['travel'];
+				    $data['about']=$user_data2['about'];
+				    $data['time']=$user_data2['time'];
+				    
+				    
+				    }		 
 				}
 				
 						 
@@ -58,7 +68,75 @@ class User extends CI_Controller {
 		
 		}
 		
-/////////////////////////////////////////////////////		
+/////////////////////////////////////////////////////
+
+    /////////////////////////////////////////////////////// add chat_messages
+    function add_user_step2() {
+        
+         if ($this->session->userdata('logged_in')) {   
+            
+            $this->load->library('form_validation');
+		
+			$this->form_validation->set_rules('time', 'Time', 'required|trim|max_length[3]|xss_clean');
+			$this->form_validation->set_rules('about', 'About', 'required|max_length[500]|trim|xss_clean');
+			$this->form_validation->set_rules('travel', 'Travel', 'required|max_length[30]|trim|xss_clean');
+			$this->form_validation->set_rules('faculty', 'Faculty', 'required|max_length[130]|trim|xss_clean');
+		if($this->form_validation->run()){	
+            $user_id = $this->session->userdata('user_id');
+           $time = $this->input->post('time');
+            $about = $this->input->post('about');
+            $faculty = $this->input->post('faculty');
+            $travel = $this->input->post('travel');
+            
+           
+
+            $this->load->model('user_model');
+            if ($this->user_model->add_user_step2($user_id, $about, $faculty,$travel,$time)) {
+                redirect('user/profile');
+            } else {
+                //no chat return
+            }
+		}else{
+	$id=$this->session->userdata('user_id');
+			$this->load->model('site_model');
+			if($this->site_model->select_user($id)){				
+				$user_data=$this->site_model->select_user($id);
+				$data['user_id']=$user_data['id']; 
+				$data['username']=$user_data['username'];
+				$data['email']=$user_data['email'];
+				$data['city']=$user_data['city'];
+				$data['job']=$user_data['job'];
+				$data['prof']=$user_data['prof'];
+				$data['pic']=$user_data['pic'];
+				$data['hobbit']=$user_data['hobbit'];
+
+				$id=$user_data['id'];
+				if ($this->session->userdata('user_id')==$id) {
+					 $data['owner']='yes';
+					 }else{
+						 $data['owner']='no';
+						 }
+						 
+				if($this->site_model->select_user_step2($id)){
+				    $user_data2=$this->site_model->select_user_step2($id);
+				    $data['faculty']=$user_data2['faculty'];
+				    $data['travel']=$user_data2['travel'];
+				    $data['about']=$user_data2['about'];
+				    $data['time']=$user_data2['time'];
+				    
+				    
+				    }		 
+				}
+				
+						 
+            $this->load->view('profile',$data);	    
+		}
+        } else {
+
+            redirect('home');
+        }
+    }
+    ////////////////////////////////////////////////////////////////
  ///////////////////
     function edit_profile(){
          if ($this->session->userdata('logged_in')) {

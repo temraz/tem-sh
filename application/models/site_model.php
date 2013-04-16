@@ -121,7 +121,22 @@ public function add_temp_user($key){
 				 }
 		}
 	
-
+////////////////////////////////////////////
+		function select_user_step2($id){
+		$query="select id,faculty,about,time,travel from users where id=?";
+		 $result=$this->db->query($query,$id);
+		 if($result->num_rows() == 1){
+			 $data_result=array('id'=>$result->row(0)->id,'faculty'=>$result->row(0)->faculty, 'about'=>$result->row(0)->about ,
+				                   'time'=>$result->row(0)->time,'travel'=>$result->row(0)->travel
+								     );
+				return  $data_result; 
+			 
+			 }else{
+				 return false;
+				 }
+		}
+	
+               ///////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////
 
 function contact_form($name,$mail,$type,$message){

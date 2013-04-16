@@ -61,7 +61,7 @@ function do_upload($id){
 				 
 				
 				}
-			///////////////////////////////////////////
+		
 		function update_user($id){
 			$data=array(
 						
@@ -106,7 +106,21 @@ function do_upload($id){
 			}
 					
 					
+//////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////// add chat messages 
+				function add_user_step2($user_id, $about, $faculty,$travel,$time){
 					
+					 $query_str=" update users set about=?,faculty=?,travel=?,time=? where id = '{$user_id}'";
+					           
+				 $result=$this->db->query($query_str, array($about, $faculty,$travel,$time,$user_id));
+				if($result){
+					return true;
+					}else{
+						return false;
+						}
+					
+					}
+			    ///////////////////////////////////////////////////////////		 
 					
 					
 					

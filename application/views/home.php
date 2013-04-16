@@ -508,6 +508,7 @@
                                     <div class="span3 control-group">
 										<label>City *</label>
 										 <select name="city" size="1" class="span3" required>
+											<option value="" >Select</option>
    <?php for($i=0;$i< count($governorates_list);$i++) {
   echo " <option value=\"$governorates_list[$i]\"";
     echo ">$governorates_list[$i]</option>";
@@ -517,6 +518,7 @@
                                     <div class="span3 control-group">
 										<label>Profession *</label>
 										 <select name="Profession" size="1" class="span3" required>
+											<option value="" >Select</option>
    <?php for($i=0;$i< count($jobs_list);$i++) {
   echo " <option value=\"$jobs_list[$i]\"";
     echo ">$jobs_list[$i]</option>";
@@ -534,7 +536,7 @@
                                     
                                     <div class="span6 control-group">
 										<label>Hobbies *</label>
-										<textarea maxlength="300"  rows="5" class="span6" name="hobbies" id="message"><?php echo $this->input->post('hobbies') ?></textarea>
+										<textarea maxlength="300" required minlength="60" rows="5" class="span6" name="hobbies" id="message"><?php echo $this->input->post('hobbies') ?></textarea>
 									</div>
 								</div>
 								
