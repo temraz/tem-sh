@@ -5,7 +5,6 @@
 
 		<!-- Basic -->
 		<meta charset="utf-8">
-		<title>Events</title>
 		<meta name="keywords" content="HTML5 Template" />
 		<meta name="description" content="Porto - Responsive HTML5 Template">
 		<meta name="author" content="Crivos.com">
@@ -71,39 +70,8 @@
 
 	  <div class="body">
 			<?php include('header.php')?>
-
-			<div role="main" class="main">
-
-				<section class="page-top">
-					<div class="container">
-						<div class="row">
-							<div class="span12">
-								<ul class="breadcrumb">
-									<li><a href="<?php echo base_url();?>home/" >Home</a> <span class="divider">/</span></li>
-								
-								</ul>
-							</div>
-						</div>
-						<div class="row">
-							<div class="span12">
-								<h2>Events</h2>
-							</div>
-						</div>
-					</div>
-				</section>
-
-				<div class="container">
-
-					<h2>Latest <strong>Events</strong></h2>
-
-					
-
-					<hr />
-
-					<div class="row" >
-
-						<ul class="team-list sort-destination" data-sort-id="team">
-                        <?php foreach ($all_events as $row){
+            
+  <?php foreach ($event_details as $row){
 							$event_id = $row->id; 
 							$event_name = $row->event_name ;
 							$event_date = $row->event_date ;
@@ -111,32 +79,96 @@
 							$about_event = $row->about_event ;
 							$facebook = $row->facebook_url;
 							$twitter = $row->twitter_url;
+  }
 							?>
-							<li class="span3 isotope-item leadership" style="height:400px;">
-								<div class="team-item thumbnail">
-									<a href="<?php echo base_url()."home/event/".$event_id;?>" class="thumb-info team">
-										<img id="event_img" src="<?php echo base_url()."images/events/".$event_logo ;?>" width="300" height="200" >
-										<span class="thumb-info-title">
-											<span class="thumb-info-inner"><?php  echo  character_limiter($event_name, 18); ?></span>
-											<span class="thumb-info-type"><?php echo  $event_date ;?></span>
-										</span>
-									</a>
-									<span class="thumb-info-caption">
-										<p><?php echo  character_limiter($about_event, 50); ?></p>
-										<div class="thumb-info-social-icons">
-											<a href="<?php echo $facebook ;?>"><i class="icon-facebook"></i><span>Facebook</span></a>
-											<a href="<?php echo $twitter ;?>"><i class="icon-twitter"></i><span>Twitter</span></a>
-										
-										</div>
-                                      
-									</span>
-								</div>
-							</li>
-                            <?php }?>
-						</ul>
+                            
+                            
+                                                 <?php
+												 if(isset($user_event)){
+												  foreach ($user_event as $row){
+							$waiting = $row->wait; 
+							$confirm = $row->confirm ;
+												 }
+												 } ?>
+                                                 
+			<div role="main" class="main">
 
+				<section class="page-top">
+					<div class="container">
+						<div class="row">
+							<div class="span12">
+								<ul class="breadcrumb">
+									<li><a href="<?php echo base_url();?>home/events" >Events</a> <span class="divider">/</span></li>
+								
+								</ul>
+							</div>
+						</div>
+						<div class="row">
+							<div class="span12">
+								<h2><?php echo $event_name ; ?></h2>
+							</div>
+						</div>
 					</div>
+				</section>
 
+				<div class="container">
+
+					<h2><?php echo $event_name ; ?> Event</h2>
+
+					<title><?php echo $event_name ; ?></title>
+
+					<hr />
+	<article class="post post-medium-image">
+									<div class="row">
+
+										<div class="span4">
+											<div class="post-image">
+												<div class="flexslider flexslider-center-mobile flexslider-simple" data-plugin-options='{"controlNav":false, "animation":"slide", "slideshow": false, "maxVisibleItems": 1}'>
+													<ul class="slides">
+														<li>
+															<img class="img-rounded" src="<?php echo base_url()."images/events/".$event_logo ; ?>">
+														</li>
+													</ul>
+												</div>
+											</div>
+										</div>
+										<div class="span8">
+			
+											<div class="post-content">
+
+												<h2><?php echo $event_name ; ?> Event Detalis</h2>
+												<p><?php echo $about_event ; ?></p>
+
+											</div>
+										</div>
+
+									</div>
+									<div class="row">
+										<div class="span11">
+											<div class="post-meta">
+												<span><i class="icon-calendar"></i> <?php echo $event_date ; ?> </span>
+												<span><i class="icon-facebook"></i> <a href="<?php echo $facebook ; ?>"><?php echo $event_name ; ?>'s Facebook Page</a> </span>
+												<span><i class="icon-twitter"></i><a href="<?php echo $twitter ; ?>"><?php echo $event_name ; ?>'s twitter Page</a> </span>
+												<span><i class="icon-comments"></i> <a href="#">12 Comments</a></span>
+                                                
+                                                
+                                                
+                                                <?php 
+												if(isset($confirm) && $confirm == 1){ ?>
+                                                <span class="label label-success pull-right">Yore Attend is confirmed</span>
+													<?php }
+												elseif(isset($waiting) && $waiting == 1){?>
+                                <span class="label label-warning pull-right">Waiting Your Confirmation</span>
+                            <?php } else { ?>
+								
+								<a href="<?php echo base_url()."home/attend/".$event_id;?>" class="btn  btn-primary pull-right" style="">Attend</a>
+							<?php	} ?>
+												
+											</div>
+										</div>
+									</div>
+
+								</article>
 				</div>
 
 			</div>

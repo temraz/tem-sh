@@ -1,67 +1,87 @@
 <?php include('admin_header.php')?>
 <li ><a href="<?php echo base_url(); ?>admin/panel">Unconfirmed Users  <strong>(<?php $this->load->model('civou/admin_model'); echo count($this->admin_model->get_unconfirmed_user()); ?>)</a></strong></a></li>
 									<li><a href="<?php echo base_url(); ?>admin/users">Actived Users <strong>(<?php $this->load->model('civou/admin_model'); echo count($this->admin_model->get_confirmed_user()); ?>)</strong></a></li>
-								 <li class="active"><a href="<?php echo base_url(); ?>admin/events">New Event</a></li>
-                                  <li><a href="<?php echo base_url(); ?>admin/allevents">Events</a></li>	
+								 <li><a href="<?php echo base_url(); ?>admin/events">New Event</a></li>
+                                  <li class="active"><a href="<?php echo base_url(); ?>admin/allevents">Events</a></li>	
 								</ul>
+                                
 							</aside>
 						</div>
-		<title>New Event</title>
+		<title>Events</title>
 				
 <div class="span8" style="float:left ; margin-left:70px">
 
-<h2>New Event</h2>
-                                
-								<hr />
-                                <?php echo form_open_multipart('admin/insert_event'); ?>
-                                <?php if (validation_errors()){ ?>
-                                <div class="alert alert-error">
-								<button type="button" class="close" data-dismiss="alert">&times;</button>
-								<strong>Error! <?php  echo validation_errors(); ?></strong> 
-							</div>
-                                <?php } if(isset($inserted) && $inserted == 1){?>
-                                <div class="alert alert-success">
-								<button type="button" class="close" data-dismiss="alert">&times;</button>
-								<strong>Success!</strong> The Event inserted Successfuly. 
-							</div>
-                            <?php } ?>
-								<div class="row controls" id="contactForm">
-                              
-									<div class="span3 control-group" style="width:100%">
-										<label>Event Name *</label>
-										<input type="text" value="" maxlength="100" class="span3" name="event_name"  required>
-									</div>
-                                    <div class="span3 control-group" style="width:100%">
-										<label>Event logo *</label>
-										<input type="file" name="photo"  required>
-									</div>
-                                    <div class="span3 control-group" style="width:100%">
-										<label>Event Date *</label>
-										<input type="date" value="" maxlength="100" class="span3" name="event_date"  required>
-									</div>
-                                    <div class="span3 control-group" style="width:100%">
-										<label>Event Description *</label>
-										<textarea  name="about_event"  maxlength="300"  rows="5" class="span6" required></textarea>
-									</div>
-                                    <h3>Links</h3>
-                                    <div class="span3 control-group" style="width:100%">
-										<label>Facebook URL</label>
-										<input type="url"  maxlength="100" class="span3" name="facebook"  required>
-									</div>
+<ul class="nav nav-pills sort-source" data-sort-id="portfolio" data-option-key="filter">
+						<li data-option-value=".websites" ><a href="<?php $id= $this->uri->segment(3); echo base_url()."admin/unconfirmed/".$id;?>">Unconfirmed</a></li>
+						<li data-option-value=".logos" class="active"><a href="<?php echo base_url()."admin/attends/".$id;?>">Attends</a></li>
+						
+					</ul>
+                    
+<table class="table table-striped">
+								<thead>
+									<tr>
+                                    <th>
+											#
+										</th>
+										<th>
+											Username
+										</th>
+										<th>
+											Email
+										</th>
+										<th>
+											Job
+										</th>
+                                        <th>
+											City
+										</th>
+                                        <th>
+											Confirm
+										</th>
+									</tr>
+								</thead>
+								<tbody>
+                                <?php $count=1;
+								foreach($attends as $row){ 
+								$id = $row->id;
+								$user_id = $row->user_id;
+								$user_data=$this->admin_model->get_user_by_id($user_id);
+								foreach($user_data as $row){
+										$username = $row->name 	;
+										$email  = $row->email 	;
+										$job = $row->job 	;
+                                        $city  = $row->city 	;
+?>
+									<tr>
+                                    <td>
+											<?php echo $count; ?>
+										</td>
+										<td>
+											<?php echo $username; ?>
+										</td>
+										<td>
+											<?php echo $email; ?>
+										</td>
+                                        <td>
+											<?php echo $job; ?>
+										</td>
+                                        <td>
+											<?php echo $city; ?>
+										</td>
+                                       <td>
+											<i class="icon-ok" style="color:#060; margin-left:15px"></i>
+                                            </td>
                                     
-                                    <div class="span3 control-group" style="width:100%">
-										<label>Twitter URL</label>
-										<input type="text" value="" maxlength="100" class="span3" name="twitter"  required>
-									</div>
-                                    
-								</div>
-								
-								<div class="btn-toolbar">
-									<input type="submit" value="Publish" class="btn btn-primary btn-large" data-loading-text="Loading...">
-								</div>
-							 <?php echo form_close();?>
-                            </div>
-                  </div>          
+										
+									</tr>
+                                    <?php 
+								}
+								$count++;
+								}?>
+                                    </tbody></table>
+
+</div>
+		</div>
 
 			</div>
         	

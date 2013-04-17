@@ -165,5 +165,44 @@ function logout() {
 	
 	
 ///////////////////////////////////////////	
+
+public function event()
+	{
+		/*if ($this->session->userdata('logged_in')) {*/
+			$this->load->model('event_model');
+			$user_id = $this->session->userdata('user_id');
+			$id= $this->uri->segment(3);
+			if($this->event_model->is_event_valid($id) && $this->uri->segment(3) != ''){
+				$data['user_event'] = $this->event_model->user_event($user_id , $id);
+				$data['event_details']=$this->event_model->get_event($id);
+				$this->load->view('event',$data);
+				}else{
+					redirect('home/events');
+					}
+	/*}
+	else{
+            redirect('home');
+        }*/
+	}
+	
+	/////////////////////////////////////////
+	public function attend()
+	{
+		if ($this->session->userdata('logged_in')) {
+			$this->load->model('event_model');
+			$user_id = $this->session->userdata('user_id');
+			$event_id= $this->uri->segment(3);
+			$data = array( 'user_id'=>$user_id , 
+			'event_id'=>$event_id,
+			'wait'=>1);
+			if($this->db->insert('user_events',$data)){
+				redirect('home/event/'.$event_id);
+				}
+	}
+	else{
+            redirect('home');
+        }
+	}
+	
 }
 

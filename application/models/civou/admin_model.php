@@ -202,6 +202,31 @@ public function get_all_user(){
 		 $this->db->where('id',$id);
 			$this->db->delete('temp_users'); 
 		  }
+		  
+		  /////////////////////////////////
+public function get_all_events(){
+			 $query = $this->db->get('events');
+	  return $query->result();
+	  }	
+	  /////////////////////////////
+	  public function get_unconfirmed($id){
+					$query = "select * from user_events where event_id=$id and confirm=0 and wait=1 ";
+					$result=$this->db->query($query);
+				return $result->result();;
+				}
+				  /////////////////////////////
+	  public function get_attends($id){
+					$query = "select * from user_events where event_id=$id and confirm=1 and wait=0 ";
+					$result=$this->db->query($query);
+				return $result->result();;
+				}
+				///////////////////
+		public function get_user_by_id($id){
+     	$this->db->where('id',$id);
+			 $query = $this->db->get('users');
+	  return $query->result();
+	  }			
+	  
 }
 
 

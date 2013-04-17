@@ -1,67 +1,61 @@
 <?php include('admin_header.php')?>
 <li ><a href="<?php echo base_url(); ?>admin/panel">Unconfirmed Users  <strong>(<?php $this->load->model('civou/admin_model'); echo count($this->admin_model->get_unconfirmed_user()); ?>)</a></strong></a></li>
 									<li><a href="<?php echo base_url(); ?>admin/users">Actived Users <strong>(<?php $this->load->model('civou/admin_model'); echo count($this->admin_model->get_confirmed_user()); ?>)</strong></a></li>
-								 <li class="active"><a href="<?php echo base_url(); ?>admin/events">New Event</a></li>
-                                  <li><a href="<?php echo base_url(); ?>admin/allevents">Events</a></li>	
+								 <li><a href="<?php echo base_url(); ?>admin/events">New Event</a></li>
+                                  <li class="active"><a href="<?php echo base_url(); ?>admin/allevents">Events</a></li>	
 								</ul>
+                                
 							</aside>
 						</div>
-		<title>New Event</title>
+		<title>Events</title>
 				
 <div class="span8" style="float:left ; margin-left:70px">
 
-<h2>New Event</h2>
-                                
-								<hr />
-                                <?php echo form_open_multipart('admin/insert_event'); ?>
-                                <?php if (validation_errors()){ ?>
-                                <div class="alert alert-error">
-								<button type="button" class="close" data-dismiss="alert">&times;</button>
-								<strong>Error! <?php  echo validation_errors(); ?></strong> 
-							</div>
-                                <?php } if(isset($inserted) && $inserted == 1){?>
-                                <div class="alert alert-success">
-								<button type="button" class="close" data-dismiss="alert">&times;</button>
-								<strong>Success!</strong> The Event inserted Successfuly. 
-							</div>
-                            <?php } ?>
-								<div class="row controls" id="contactForm">
-                              
-									<div class="span3 control-group" style="width:100%">
-										<label>Event Name *</label>
-										<input type="text" value="" maxlength="100" class="span3" name="event_name"  required>
-									</div>
-                                    <div class="span3 control-group" style="width:100%">
-										<label>Event logo *</label>
-										<input type="file" name="photo"  required>
-									</div>
-                                    <div class="span3 control-group" style="width:100%">
-										<label>Event Date *</label>
-										<input type="date" value="" maxlength="100" class="span3" name="event_date"  required>
-									</div>
-                                    <div class="span3 control-group" style="width:100%">
-										<label>Event Description *</label>
-										<textarea  name="about_event"  maxlength="300"  rows="5" class="span6" required></textarea>
-									</div>
-                                    <h3>Links</h3>
-                                    <div class="span3 control-group" style="width:100%">
-										<label>Facebook URL</label>
-										<input type="url"  maxlength="100" class="span3" name="facebook"  required>
-									</div>
-                                    
-                                    <div class="span3 control-group" style="width:100%">
-										<label>Twitter URL</label>
-										<input type="text" value="" maxlength="100" class="span3" name="twitter"  required>
-									</div>
-                                    
-								</div>
-								
-								<div class="btn-toolbar">
-									<input type="submit" value="Publish" class="btn btn-primary btn-large" data-loading-text="Loading...">
-								</div>
-							 <?php echo form_close();?>
-                            </div>
-                  </div>          
+<!--<ul class="nav nav-pills sort-source" data-sort-id="portfolio" data-option-key="filter">
+						<li data-option-value="*" class="active"><a href="<?php echo base_url(); ?>admin/allevents">Events</a></li>
+						<li data-option-value=".websites"><a href="#">Unconfirmed</a></li>
+						<li data-option-value=".logos"><a href="#">Attends</a></li>
+						
+					</ul>-->
+                    
+<table class="table table-striped">
+								<thead>
+									<tr>
+                                    <th>
+											#
+										</th>
+										<th>
+											Event Name
+										</th>
+										<th>
+											Event Date
+										</th>
+									</tr>
+								</thead>
+								<tbody>
+                                <?php $count=1;
+								foreach($events as $row){ 
+$id = $row->id;								
+$event_name = $row->event_name 	;
+$event_date  = $row->event_date 	;
+?>
+									<tr>
+                                    <td>
+											<?php echo $count; ?>
+										</td>
+										<td>
+											<a href="<?php echo base_url()."admin/unconfirmed/".$id;?>"><?php echo $event_name; ?></a>
+										</td>
+										<td>
+											<?php echo $event_date; ?>
+										</td>
+										
+									</tr>
+                                    <?php $count++;}?>
+                                    </tbody></table>
+
+</div>
+		</div>
 
 			</div>
         	

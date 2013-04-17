@@ -8,23 +8,82 @@ class Admin extends CI_Controller {
 	}
 	public function panel()
 	{
+		if ($this->session->userdata('logged_in_admin')) {
 		$this->load->model('civou/admin_model');
 		$data['unconfirmed_users'] = $this->admin_model->get_unconfirmed_user();
 		$this->load->view('civou/panel',$data);
+	}else {
+		 redirect('admin');
+		}
 	}
 	public function users()
 	{
+		if ($this->session->userdata('logged_in_admin')) {
 		$this->load->model('civou/admin_model');
 		$data['users'] = $this->admin_model->get_confirmed_user();
 		$this->load->view('civou/users',$data);
+		}else {
+		 redirect('admin');
+		}
 	}
 	public function events()
 	{
+		if ($this->session->userdata('logged_in_admin')) {
 		$this->load->model('civou/admin_model');
 		$this->load->view('civou/events');
+		}else {
+		 redirect('admin');
+		}
 	}
+	public function allevents()
+	{
+		if ($this->session->userdata('logged_in_admin')) {
+		$this->load->model('civou/admin_model');
+		$data['events'] = $this->admin_model->get_all_events();
+		$this->load->view('civou/all_events',$data);
+		}else {
+		 redirect('admin');
+		}
+	}
+	public function unconfirmed()
+	{
+		if ($this->session->userdata('logged_in_admin')) {
+		if($id= $this->uri->segment(3) != ''){	
+		$event_data = array("event_id" => $this->uri->segment(3));
+                $this->session->set_userdata($event_data);
+		$this->load->model('civou/admin_model');
+		$id= $this->uri->segment(3);
+		$data['unconfirmed_attends'] = $this->admin_model->get_unconfirmed($id);
+		$this->load->view('civou/unconfirmed_attends',$data);}
+		else {
+			redirect('admin/allevents');
+			}
+		}else {
+		 redirect('admin');
+		}
+	}
+	public function attends()
+	{
+		if ($this->session->userdata('logged_in_admin')) {
+		if($id= $this->uri->segment(3) != ''){	
+		$event_data = array("event_id" => $this->uri->segment(3));
+                $this->session->set_userdata($event_data);
+		$this->load->model('civou/admin_model');
+		$id= $this->uri->segment(3);
+		$data['attends'] = $this->admin_model->get_attends($id);
+		$this->load->view('civou/attends',$data);}
+		else {
+			redirect('admin/allevents');
+			}
+		}else {
+		 redirect('admin');
+		}
+	}
+	
+	
 ////////////////////////////////////////////insert event //////////////
 	public function insert_event(){
+		if ($this->session->userdata('logged_in_admin')) {
 		$this->load->model('civou/admin_model');
 		  $flag['inserted']=0;
 		$this->load->library('form_validation');
@@ -64,36 +123,12 @@ class Admin extends CI_Controller {
 	   }else {
 		    $this->load->view('civou/events');
 		   }
+		   }else {
+		 redirect('admin');
+		}
 		}
  ///////////////////////////////////////////////////////////////////////////////////// validate user
    
-
-    ///////////////////////////   email activation ////////////////////////////////// 
-    public function register_user() {
-		 if ($this->uri->segment(3) != '') {
-			 $key2=$this->uri->segment(3);
-        $this->load->model('site_model');
-
-        if ($this->site_model->is_key_valid_user($key2)) {
-            if ($newmail = $this->site_model->add_user($key2)) {
-
-                //$data=array(
-                //'email'=>$newmail,
-                //'is_logged_in'=>1
-                //);
-                //$this->session->set_userdata($data);
-                redirect('home/');
-            } else {
-
-                echo"فشل في تفعيل الحساب ,من فضلك حاول مره اخري";
-            }
-        } else {
-            echo "رابط التفعيل غير صحيح";
-        }
-		 }else{
-			redirect('home/error');
-			 }
-    }
  ///////////////////////////////
     public function login_validation() {
         $this->load->library('form_validation');
@@ -125,7 +160,13 @@ class Admin extends CI_Controller {
             }
         }
     }
-
+	///////////////////////////////
+	
+	function logout() {
+        $this->session->sess_destroy();
+        redirect('admin/');
+    }
+	
     /////////////////////////////
     public function validate_credentials() {
         $this->load->model('civou/admin_model');
@@ -143,6 +184,7 @@ class Admin extends CI_Controller {
 	
 ///////////////////////////////////////////	
  public function confirm(){
+	 if ($this->session->userdata('logged_in_admin')) {
 	 $id=$this->uri->segment(3);
 	 $this->load->model('civou/admin_model');
 	 $data = array('confirm' => 1);
@@ -150,7 +192,27 @@ class Admin extends CI_Controller {
 			if( $this->db->update('users',$data)){
 				
 		redirect('admin/panel');
-		}	 
+		}	
+		}else {
+		 redirect('admin');
+		} 
+	 }
+	 
+	////////////////////////////////////////
+	public function attending(){
+	 if ($this->session->userdata('logged_in_admin')) {
+	 $id=$this->uri->segment(3);
+	 $event_id=$this->uri->segment(4);
+	 $this->load->model('civou/admin_model');
+	 $data = array('confirm' => 1 , 
+	 'wait' => 0);
+	$this->db->where('id',$id);
+			if( $this->db->update('user_events',$data)){
+		redirect('admin/unconfirmed/'.$event_id);
+		}	
+		}else {
+		 redirect('admin');
+		} 
 	 }
 }
 
