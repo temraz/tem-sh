@@ -116,7 +116,7 @@ class Admin extends CI_Controller {
 
                 $user = $this->admin_model->check_can_log_in($admin_name, $password);
 
-                $login_data = array("logged_in" => true, "user_id" => $user['id']);
+                $login_data = array("logged_in_admin" => true, "user_id" => $user['id']);
                 $this->session->set_userdata($login_data);
                 redirect('admin/panel');
             } else {

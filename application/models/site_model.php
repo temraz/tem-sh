@@ -78,7 +78,7 @@ public function add_temp_user($key){
         $username=  $this->input->post('email');
         $password= $this->input->post('password');
 		
-        $query = "select id ,email from users where email=? and password=?  ";
+        $query = "select id ,email from users where email=? and password=? and confirm =1 ";
       $result=$this->db->query($query,array($username,$password));
        if ( $result) {
           $result=array('id'=>$result->row(0)->id, 'email'=>$result->row(0)->email);
@@ -95,7 +95,7 @@ public function add_temp_user($key){
       // $emaiil= $this->db->where('email', $this->input->post('email'));
       // $password= $this->db->where('password', md5($this->input->post('password')));
         
-        $query = "select id from users where email=? and password=?";
+        $query = "select id from users where email=? and password=? and confirm =1";
         $result=$this->db->query($query,array($username,$password));
         
         if($result->num_rows() == 1){
@@ -121,7 +121,22 @@ public function add_temp_user($key){
 				 }
 		}
 	
-
+////////////////////////////////////////////
+		function select_user_step2($id){
+		$query="select id,faculty,about,time,travel from users where id=?";
+		 $result=$this->db->query($query,$id);
+		 if($result->num_rows() == 1){
+			 $data_result=array('id'=>$result->row(0)->id,'faculty'=>$result->row(0)->faculty, 'about'=>$result->row(0)->about ,
+				                   'time'=>$result->row(0)->time,'travel'=>$result->row(0)->travel
+								     );
+				return  $data_result; 
+			 
+			 }else{
+				 return false;
+				 }
+		}
+	
+               ///////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////
 
 function contact_form($name,$mail,$type,$message){
