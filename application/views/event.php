@@ -164,7 +164,7 @@
 								<a href="<?php echo base_url()."home/attend/".$event_id;?>" class="btn  btn-primary pull-right" style="">Attend</a>
 							<?php	}
 												}else {
-													echo "<span style=\"float:right; color:#F00\">You Must to Sign In to to see Attend Option..</span>";
+													echo "<span style=\"float:right; color:#F00\">You Must Sign In to to see Attend Option..</span>";
 													}?>
 												
 											</div>

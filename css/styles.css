@@ -104,7 +104,7 @@
 #modal {
 	visibility:hidden;
 	width:360px;
-	height:490px;
+	height:520px;
 	padding:8px;
 
 	background:rgba(0,0,0,.3);
@@ -123,7 +123,7 @@
 
 #content {
 	width:360px;
-	height:445px;
+	height:475px;
 
 	background:#fcfcfc;
 

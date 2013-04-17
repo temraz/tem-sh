@@ -122,7 +122,7 @@
 										</span>
 									</a>
 									<span class="thumb-info-caption">
-										<p><?php echo  character_limiter($about_event, 50); ?></p>
+										<p><?php echo  character_limiter($about_event, 50); ?><a href="" >See more</a></p>
 										<div class="thumb-info-social-icons">
 											<a href="<?php echo $facebook ;?>"><i class="icon-facebook"></i><span>Facebook</span></a>
 											<a href="<?php echo $twitter ;?>"><i class="icon-twitter"></i><span>Twitter</span></a>

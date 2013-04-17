@@ -77,7 +77,7 @@ class User extends CI_Controller {
             
             $this->load->library('form_validation');
 		
-			$this->form_validation->set_rules('time', 'Time', 'required|trim|max_length[3]|xss_clean');
+			$this->form_validation->set_rules('time', 'Time', 'required|trim|max_length[2]|xss_clean');
 			$this->form_validation->set_rules('about', 'About', 'required|max_length[500]|trim|xss_clean');
 			$this->form_validation->set_rules('travel', 'Travel', 'required|max_length[30]|trim|xss_clean');
 			$this->form_validation->set_rules('faculty', 'Faculty', 'required|max_length[130]|trim|xss_clean');

@@ -66,6 +66,9 @@
 		<meta property="og:description" content="Porto - Responsive HTML5 Template"/>
 		
                 <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+                <style type="text/css">
+                #valid p{color:#F00;}
+                </style>
 	</head>
 	<body >
 
@@ -138,8 +141,10 @@
                                 }
                                 ?> 
 
-								<h4 style="float:left">About <span style="text-transform:capitalize" > <?php if(isset($username)){echo $username ;}?></span></h4><div class="icon-edit" style="float:left ; margin-left:5px ; margin-top:8px"><a href="#">edit</a></div>
-								<p style="float:right;min-height: 60px;">
+								<h4 style="float:left">About <span style="text-transform:capitalize" > <?php if(isset($username)){echo $username ;}?></span>
+                                </h4><div class="icon-edit" style="float:left ; margin-left:5px ; margin-top:8px"><a href="#">edit</a></div>
+                                </br> </br>
+								<p style="float:right;min-height:10px;width:270px;">
 									<?php if(isset($hobbit)){echo $hobbit ;}?>
 								</p>
 
@@ -507,7 +512,7 @@
 				</div>
 
 				
-	<?php if( $time=='' && $faculty=='' && $travel=='' && $about=='' ){?>			
+	<?php if( $time=='' || $faculty=='' || $travel=='' || $about=='' ){?>			
 <div id="modal">
 	<div id="heading">
 		You must fill out this fields first.
@@ -524,7 +529,7 @@
 								<div class="row controls" id="contactForm" style="padding: 10px 0 10px 45px;;">
 									<div class="span3 control-group">
 										<label>Donated Time by Houres *</label>
-										<input type="text" value="" maxlength="100" class="span3" name="time" id="email" required>
+										<input type="text" value="" maxlength="100" class="span3" name="time" placeholder="Houre Per Day" id="email" required>
 									</div>
 									<div class="span3 control-group">
 										<label>Can You Travel With us ? *</label>
@@ -553,7 +558,7 @@
 								</div>
 								
 								<div class="btn-toolbar">
-									<input type="submit" value="Save" style="margin-left: 45px;margin-top: -40px" class="btn btn-primary btn-large" data-loading-text="Loading...">
+									<input type="submit" value="Save" style="margin-left: 45px;margin-top: -40px;position:relative" class="btn btn-primary btn-large" data-loading-text="Loading...">
 								</div>
 							 <?php echo form_close();?>
 	</div>
