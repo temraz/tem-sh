@@ -153,7 +153,7 @@
                                                 
                                                 
                                                 
-                                                <?php 
+                                                <?php if(($this->session->userdata('logged_in'))){
 												if(isset($confirm) && $confirm == 1){ ?>
                                                 <span class="label label-success pull-right">Yore Attend is confirmed</span>
 													<?php }
@@ -162,7 +162,10 @@
                             <?php } else { ?>
 								
 								<a href="<?php echo base_url()."home/attend/".$event_id;?>" class="btn  btn-primary pull-right" style="">Attend</a>
-							<?php	} ?>
+							<?php	}
+												}else {
+													echo "<span style=\"float:right; color:#F00\">You Must to Sign In to to see Attend Option..</span>";
+													}?>
 												
 											</div>
 										</div>
