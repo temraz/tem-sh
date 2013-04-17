@@ -168,12 +168,14 @@ function logout() {
 
 public function event()
 	{
-		/*if ($this->session->userdata('logged_in')) {*/
+		
 			$this->load->model('event_model');
 			$user_id = $this->session->userdata('user_id');
 			$id= $this->uri->segment(3);
 			if($this->event_model->is_event_valid($id) && $this->uri->segment(3) != ''){
+				if ($this->session->userdata('logged_in')) {
 				$data['user_event'] = $this->event_model->user_event($user_id , $id);
+				}
 				$data['event_details']=$this->event_model->get_event($id);
 				$this->load->view('event',$data);
 				}else{
