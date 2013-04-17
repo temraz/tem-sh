@@ -144,8 +144,8 @@
 								<h4 style="float:left">About <span style="text-transform:capitalize" > <?php if(isset($username)){echo $username ;}?></span>
                                 </h4><div class="icon-edit" style="float:left ; margin-left:5px ; margin-top:8px"><a href="#">edit</a></div>
                                 </br> </br>
-								<p style="float:right;min-height:10px;width:270px;">
-									<?php if(isset($hobbit)){echo $hobbit ;}?>
+								<p style="float:left;word-wrap:break-word;width:270px;">
+									<?php if(isset($hobbit)){echo nl2br($hobbit) ;}?>
 								</p>
 
 
