@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 3.4.10.1
+-- version 3.4.5
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Apr 09, 2013 at 05:21 AM
--- Server version: 5.5.20
--- PHP Version: 5.3.10
+-- Generation Time: Apr 11, 2013 at 02:30 PM
+-- Server version: 5.5.16
+-- PHP Version: 5.3.8
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -19,6 +19,51 @@ SET time_zone = "+00:00";
 --
 -- Database: `time_bank`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `admin`
+--
+
+CREATE TABLE IF NOT EXISTS `admin` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `admin_name` varchar(255) NOT NULL,
+  `password` varchar(355) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+
+--
+-- Dumping data for table `admin`
+--
+
+INSERT INTO `admin` (`id`, `admin_name`, `password`) VALUES
+(1, 'sheir', 'e10adc3949ba59abbe56e057f20f883e');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `events`
+--
+
+CREATE TABLE IF NOT EXISTS `events` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `event_name` varchar(255) NOT NULL,
+  `event_date` varchar(255) NOT NULL,
+  `about_event` text NOT NULL,
+  `event_logo` varchar(255) NOT NULL,
+  `facebook_url` varchar(255) NOT NULL,
+  `twitter_url` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=17 ;
+
+--
+-- Dumping data for table `events`
+--
+
+INSERT INTO `events` (`id`, `event_name`, `event_date`, `about_event`, `event_logo`, `facebook_url`, `twitter_url`) VALUES
+(15, 'Peace', '2013-05-02', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras ac ligula mi, non suscipitaccumsan.', 'vodafone-world-of-difference-day1.jpg', 'https://www.facebook.com/engmohsamy', 'https://twitter.com/Mohamed___Samy'),
+(16, 'Fun', '2013-04-26', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras ac ligula mi, non suscipitaccumsan.', 'MG_0062-e1313525952108.jpg', 'https://www.facebook.com/engmohsamy', 'www.twitter.com/Mohamed___Samy');
 
 -- --------------------------------------------------------
 
@@ -70,7 +115,14 @@ CREATE TABLE IF NOT EXISTS `temp_users` (
   `regist_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `key` text NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8 ;
+
+--
+-- Dumping data for table `temp_users`
+--
+
+INSERT INTO `temp_users` (`id`, `name`, `password`, `email`, `phone`, `mobile`, `birthdate`, `prof`, `job`, `city`, `travel`, `faculty`, `hobbit`, `about`, `regist_date`, `key`) VALUES
+(7, 'hawata', 'e10adc3949ba59abbe56e057f20f883e', 'hawata@yahoo.com', '01000000000', '01000000000', '1-1-1992', 'teamaker', 'teamaker', 'shouhda', 'no', 'fci', 'football', 'nothing', '2013-04-11 06:07:42', '010101010100');
 
 -- --------------------------------------------------------
 
@@ -98,6 +150,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `rate` varchar(45) DEFAULT NULL,
   `regist_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `video` varchar(500) DEFAULT NULL,
+  `confirm` int(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
 
@@ -105,11 +158,11 @@ CREATE TABLE IF NOT EXISTS `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `password`, `email`, `phone`, `mobile`, `birthdate`, `prof`, `job`, `city`, `time`, `travel`, `faculty`, `hobbit`, `about`, `pic`, `rate`, `regist_date`, `video`) VALUES
-(1, 'temraz', '3c4b00d8fa41a8ccf28344a99c8c4ae2', 'temraz@yahoo.com', '123', '123323', '0', '0', 'qwweqe', 'qwe', '', NULL, NULL, 'qedad', NULL, 'default_pic.jpg', NULL, '2013-04-09 00:58:40', NULL),
-(2, 'محمد', '202cb962ac59075b964b07152d234b70', 'y@yahoo.com', '1123', '123123', '0', '0', '???', '???', '', NULL, NULL, '?????', NULL, 'default_pic.jpg', NULL, '2013-04-09 01:14:27', NULL),
-(3, 'temraz12', '202cb962ac59075b964b07152d234b70', 'temraz12@yahoo.com', '12', '12', '0', '0', '12432`', 'hjb', '', NULL, NULL, 'jb', NULL, 'default_pic.jpg', NULL, '2013-04-09 03:59:04', NULL),
-(4, 'temraz', '81dc9bdb52d04dc20036dbd8313ed055', 'mohamed@yahoo.com', '4343', '4343', '0', '0', 'تاتا', 'تا', '', NULL, NULL, 'تا', NULL, 'default_pic.jpg', NULL, '2013-04-09 05:00:04', NULL);
+INSERT INTO `users` (`id`, `name`, `password`, `email`, `phone`, `mobile`, `birthdate`, `prof`, `job`, `city`, `time`, `travel`, `faculty`, `hobbit`, `about`, `pic`, `rate`, `regist_date`, `video`, `confirm`) VALUES
+(1, 'temraz', '3c4b00d8fa41a8ccf28344a99c8c4ae2', 'temraz@yahoo.com', '123', '123323', '0', '0', 'qwweqe', 'qwe', '', NULL, NULL, 'qedad', NULL, 'default_pic.jpg', NULL, '2013-04-11 12:33:59', NULL, 1),
+(2, 'محمد', '202cb962ac59075b964b07152d234b70', 'y@yahoo.com', '1123', '123123', '0', '0', '???', '???', '', NULL, NULL, '?????', NULL, 'default_pic.jpg', NULL, '2013-04-11 13:18:40', NULL, 0),
+(3, 'temraz12', '202cb962ac59075b964b07152d234b70', 'temraz12@yahoo.com', '12', '12', '0', '0', '12432`', 'hjb', '', NULL, NULL, 'jb', NULL, 'default_pic.jpg', NULL, '2013-04-11 12:33:19', NULL, 0),
+(4, 'temraz', '81dc9bdb52d04dc20036dbd8313ed055', 'mohamed@yahoo.com', '4343', '4343', '0', '0', 'تاتا', 'تا', '', NULL, NULL, 'تا', NULL, 'default_pic.jpg', NULL, '2013-04-09 05:00:04', NULL, 0);
 
 -- --------------------------------------------------------
 
