@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Apr 11, 2013 at 02:30 PM
+-- Generation Time: Apr 17, 2013 at 04:52 PM
 -- Server version: 5.5.16
 -- PHP Version: 5.3.8
 
@@ -55,15 +55,16 @@ CREATE TABLE IF NOT EXISTS `events` (
   `facebook_url` varchar(255) NOT NULL,
   `twitter_url` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=17 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=18 ;
 
 --
 -- Dumping data for table `events`
 --
 
 INSERT INTO `events` (`id`, `event_name`, `event_date`, `about_event`, `event_logo`, `facebook_url`, `twitter_url`) VALUES
-(15, 'Peace', '2013-05-02', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras ac ligula mi, non suscipitaccumsan.', 'vodafone-world-of-difference-day1.jpg', 'https://www.facebook.com/engmohsamy', 'https://twitter.com/Mohamed___Samy'),
-(16, 'Fun', '2013-04-26', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras ac ligula mi, non suscipitaccumsan.', 'MG_0062-e1313525952108.jpg', 'https://www.facebook.com/engmohsamy', 'www.twitter.com/Mohamed___Samy');
+(15, 'Peace', '2013-05-02', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras ac ligula mi, non suscipitaccumsan.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras ac ligula mi, non suscipitaccumsan.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras ac ligula mi, non suscipitaccumsan.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras ac ligula mi, non suscipitaccumsan.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras ac ligula mi, non suscipitaccumsan.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras ac ligula mi, non suscipitaccumsan.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras ac ligula mi, non suscipitaccumsan.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras ac ligula mi, non suscipitaccumsan.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras ac ligula mi, non suscipitaccumsan.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras ac ligula mi, non suscipitaccumsan.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras ac ligula mi, non suscipitaccumsan.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras ac ligula mi, non suscipitaccumsan.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras ac ligula mi, non suscipitaccumsan.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras ac ligula mi, non suscipitaccumsan.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras ac ligula mi, non suscipitaccumsan.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras ac ligula mi, non suscipitaccumsan.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras ac ligula mi, non suscipitaccumsan.', 'vodafone-world-of-difference-day1.jpg', 'https://www.facebook.com/engmohsamy', 'https://twitter.com/Mohamed___Samy'),
+(16, 'Fun', '2013-04-26', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras ac ligula mi, non suscipitaccumsan.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras ac ligula mi, non suscipitaccumsan.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras ac ligula mi, non suscipitaccumsan.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras ac ligula mi, non suscipitaccumsan.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras ac ligula mi, non suscipitaccumsan.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras ac ligula mi, non suscipitaccumsan.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras ac ligula mi, non suscipitaccumsan.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras ac ligula mi, non suscipitaccumsan.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras ac ligula mi, non suscipitaccumsan.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras ac ligula mi, non suscipitaccumsan.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras ac ligula mi, non suscipitaccumsan.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras ac ligula mi, non suscipitaccumsan.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras ac ligula mi, non suscipitaccumsan.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras ac ligula mi, non suscipitaccumsan.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras ac ligula mi, non suscipitaccumsan.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras ac ligula mi, non suscipitaccumsan.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras ac ligula mi, non suscipitaccumsan.', 'MG_0062-e1313525952108.jpg', 'https://www.facebook.com/engmohsamy', 'www.twitter.com/Mohamed___Samy'),
+(17, 'Talend', '2013-05-04', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras ac ligula mi, non suscipitaccumsan.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras ac ligula mi, non suscipitaccumsan.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras ac ligula mi, non suscipitaccumsan.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras ac ligula mi, non suscipitaccumsan.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras ac ligula mi, non suscipitaccumsan.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras ac ligula mi, non suscipitaccumsan.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras ac ligula mi, non suscipitaccumsan.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras ac ligula mi, non suscipitaccumsan.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras ac ligula mi, non suscipitaccumsan.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras ac ligula mi, non suscipitaccumsan.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras ac ligula mi, non suscipitaccumsan.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras ac ligula mi, non suscipitaccumsan.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras ac ligula mi, non suscipitaccumsan.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras ac ligula mi, non suscipitaccumsan.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras ac ligula mi, non suscipitaccumsan.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras ac ligula mi, non suscipitaccumsan.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras ac ligula mi, non suscipitaccumsan.', 'FreeGreatPicture.com-22332-bing-bing-wallpaper_.jpg', 'https://www.facebook.com/engmohsamy', 'www.twitter.com/Mohamed___Samy');
 
 -- --------------------------------------------------------
 
@@ -115,7 +116,7 @@ CREATE TABLE IF NOT EXISTS `temp_users` (
   `regist_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `key` text NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=9 ;
 
 --
 -- Dumping data for table `temp_users`
@@ -152,7 +153,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `video` varchar(500) DEFAULT NULL,
   `confirm` int(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
 
 --
 -- Dumping data for table `users`
@@ -160,9 +161,10 @@ CREATE TABLE IF NOT EXISTS `users` (
 
 INSERT INTO `users` (`id`, `name`, `password`, `email`, `phone`, `mobile`, `birthdate`, `prof`, `job`, `city`, `time`, `travel`, `faculty`, `hobbit`, `about`, `pic`, `rate`, `regist_date`, `video`, `confirm`) VALUES
 (1, 'temraz', '3c4b00d8fa41a8ccf28344a99c8c4ae2', 'temraz@yahoo.com', '123', '123323', '0', '0', 'qwweqe', 'qwe', '', NULL, NULL, 'qedad', NULL, 'default_pic.jpg', NULL, '2013-04-11 12:33:59', NULL, 1),
-(2, 'محمد', '202cb962ac59075b964b07152d234b70', 'y@yahoo.com', '1123', '123123', '0', '0', '???', '???', '', NULL, NULL, '?????', NULL, 'default_pic.jpg', NULL, '2013-04-11 13:18:40', NULL, 0),
+(2, 'محمد', '202cb962ac59075b964b07152d234b70', 'y@yahoo.com', '1123', '123123', '0', '0', '???', '???', '', NULL, NULL, '?????', NULL, 'default_pic.jpg', NULL, '2013-04-17 15:51:30', NULL, 1),
 (3, 'temraz12', '202cb962ac59075b964b07152d234b70', 'temraz12@yahoo.com', '12', '12', '0', '0', '12432`', 'hjb', '', NULL, NULL, 'jb', NULL, 'default_pic.jpg', NULL, '2013-04-11 12:33:19', NULL, 0),
-(4, 'temraz', '81dc9bdb52d04dc20036dbd8313ed055', 'mohamed@yahoo.com', '4343', '4343', '0', '0', 'تاتا', 'تا', '', NULL, NULL, 'تا', NULL, 'default_pic.jpg', NULL, '2013-04-09 05:00:04', NULL, 0);
+(4, 'temraz', '81dc9bdb52d04dc20036dbd8313ed055', 'mohamed@yahoo.com', '4343', '4343', '0', '0', 'تاتا', 'تا', '', NULL, NULL, 'تا', NULL, 'default_pic.jpg', NULL, '2013-04-09 05:00:04', NULL, 0),
+(5, 'sheir', 'e10adc3949ba59abbe56e057f20f883e', 'mohamed_sheir@yahoo.com', '2743604', '01024791324', '0', '0', 'web', 'Monufia', '', NULL, NULL, 'nothingnothingnothingnothingnothingnothingnothingnothingnothingnothingnothingnothingnothingnothingnothingnothingnothingnothingnothingnothingnothingnothingnothingnothingnothingnothingnothingnothingnothingnothingnothingnothingnothingnothingnothingnothingnothingnothingnothingnothingnothing', NULL, 'default_pic.jpg', NULL, '2013-04-17 11:05:24', NULL, 0);
 
 -- --------------------------------------------------------
 
@@ -174,11 +176,12 @@ CREATE TABLE IF NOT EXISTS `user_events` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `user_id` int(10) unsigned NOT NULL,
   `event_id` int(10) unsigned NOT NULL,
+  `wait` int(1) NOT NULL DEFAULT '0',
   `confirm` varchar(45) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `FK_user_events_1` (`user_id`),
   KEY `FK_user_events_2` (`event_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
 
 -- --------------------------------------------------------
 
