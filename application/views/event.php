@@ -136,8 +136,8 @@
 			
 											<div class="post-content">
 
-												<h2><?php echo $event_name ; ?> Event Detalis</h2>
-												<p><?php echo $about_event ; ?></p>
+												<h2><?php echo $event_name ; ?> Event Detalis <span style="font-size:14px;"><i class="icon-comments" ></i> <?php echo $count_comments; ?> Comments</span></h2>
+												<p style="margin-top:-30px"><?php echo $about_event ; ?></p>
 
 											</div>
 										</div>
@@ -149,7 +149,7 @@
 												<span><i class="icon-calendar"></i> <?php echo $event_date ; ?> </span>
 												<span><i class="icon-facebook"></i> <a href="<?php echo $facebook ; ?>"><?php echo $event_name ; ?>'s Facebook Page</a> </span>
 												<span><i class="icon-twitter"></i><a href="<?php echo $twitter ; ?>"><?php echo $event_name ; ?>'s twitter Page</a> </span>
-												<span><i class="icon-comments"></i> <?php echo $count_comments; ?> Comments</span>
+												
                                                 
                                                 
                                                 
@@ -185,11 +185,11 @@
                                     <div class="container">
                                     <div class="span3">
                                     </div>
-                                    <div class="span8">
-<ul class="comments reply">
+                                    <div class="span8" >
+<ul class="comments reply" >
 <?php echo form_open('home/add_comment/'.$event_id); ?>
 														<li>
-															<div class="comment">
+															<div class="comment" >
 																<div class="thumbnail">
 																	<img class="avatar" alt="" src="<?php echo base_url();?>/images/profile/<?php echo $pic; ?>" >
 																</div>
