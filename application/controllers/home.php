@@ -176,6 +176,8 @@ public function event()
 				if ($this->session->userdata('logged_in')) {
 				$data['user_event'] = $this->event_model->user_event($user_id , $id);
 				}
+				$data['comments'] =$this->event_model->get_comments($id);
+				$data['count_comments'] =$this->event_model->get_count_comments($id);
 				$data['event_details']=$this->event_model->get_event($id);
 				$this->load->view('event',$data);
 				}else{
@@ -205,6 +207,35 @@ public function event()
             redirect('home');
         }
 	}
+	////////////////////////
+	public function add_comment()
+	{
+		/*if ($this->session->userdata('logged_in')) {*/
+			$user_id = $this->session->userdata('user_id');
+			$event_id= $this->uri->segment(3);
+			$comment = $this->input->post('comment');
+			$date = date("M j, Y, D g:i a");
+			$this->load->library('form_validation');
+			 $this->form_validation->set_rules('comment', 'Comment', 'required|max_length[500]|trim|xss_clean');
+			 if ($this->form_validation->run()) {
+			$this->load->model('event_model');
+			
+			$data = array( 'user_id'=>$user_id , 
+			'event_id'=>$event_id,
+			'comment'=>$comment,
+			'comment_date'=>$date);
+			if($this->db->insert('event_comments',$data)){
+				redirect('home/event/'.$event_id);
+				}
+			 }else {
+				 redirect('home/event/'.$event_id);
+				 }
+	/*}
+	else{
+            redirect('home');
+        }*/
+	}
+	
 	
 }
 

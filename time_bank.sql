@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Apr 17, 2013 at 04:52 PM
+-- Generation Time: Apr 18, 2013 at 07:17 PM
 -- Server version: 5.5.16
 -- PHP Version: 5.3.8
 
@@ -69,6 +69,29 @@ INSERT INTO `events` (`id`, `event_name`, `event_date`, `about_event`, `event_lo
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `event_comments`
+--
+
+CREATE TABLE IF NOT EXISTS `event_comments` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NOT NULL,
+  `event_id` int(11) NOT NULL,
+  `comment` varchar(550) CHARACTER SET utf32 NOT NULL,
+  `comment_date` varchar(50) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=14 ;
+
+--
+-- Dumping data for table `event_comments`
+--
+
+INSERT INTO `event_comments` (`id`, `user_id`, `event_id`, `comment`, `comment_date`) VALUES
+(12, 5, 15, 'test', 'Apr 18, 2013, Thu 6:48 pm'),
+(13, 1, 15, 'al-event da gamd bas :)', 'Apr 18, 2013, Thu 6:58 pm');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `pic_dept`
 --
 
@@ -116,7 +139,7 @@ CREATE TABLE IF NOT EXISTS `temp_users` (
   `regist_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `key` text NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=9 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8 ;
 
 --
 -- Dumping data for table `temp_users`
@@ -160,11 +183,11 @@ CREATE TABLE IF NOT EXISTS `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `password`, `email`, `phone`, `mobile`, `birthdate`, `prof`, `job`, `city`, `time`, `travel`, `faculty`, `hobbit`, `about`, `pic`, `rate`, `regist_date`, `video`, `confirm`) VALUES
-(1, 'temraz', '3c4b00d8fa41a8ccf28344a99c8c4ae2', 'temraz@yahoo.com', '123', '123323', '0', '0', 'qwweqe', 'qwe', '', NULL, NULL, 'qedad', NULL, 'default_pic.jpg', NULL, '2013-04-11 12:33:59', NULL, 1),
+(1, 'temraz', '3c4b00d8fa41a8ccf28344a99c8c4ae2', 'temraz@yahoo.com', '123', '123323', '0', '0', 'qwweqe', 'qwe', '8', 'yes', 'yes', 'qedad', 'many', 'default_pic.jpg', NULL, '2013-04-18 18:58:20', NULL, 1),
 (2, 'محمد', '202cb962ac59075b964b07152d234b70', 'y@yahoo.com', '1123', '123123', '0', '0', '???', '???', '', NULL, NULL, '?????', NULL, 'default_pic.jpg', NULL, '2013-04-17 15:51:30', NULL, 1),
 (3, 'temraz12', '202cb962ac59075b964b07152d234b70', 'temraz12@yahoo.com', '12', '12', '0', '0', '12432`', 'hjb', '', NULL, NULL, 'jb', NULL, 'default_pic.jpg', NULL, '2013-04-11 12:33:19', NULL, 0),
 (4, 'temraz', '81dc9bdb52d04dc20036dbd8313ed055', 'mohamed@yahoo.com', '4343', '4343', '0', '0', 'تاتا', 'تا', '', NULL, NULL, 'تا', NULL, 'default_pic.jpg', NULL, '2013-04-09 05:00:04', NULL, 0),
-(5, 'sheir', 'e10adc3949ba59abbe56e057f20f883e', 'mohamed_sheir@yahoo.com', '2743604', '01024791324', '0', '0', 'web', 'Monufia', '', NULL, NULL, 'nothingnothingnothingnothingnothingnothingnothingnothingnothingnothingnothingnothingnothingnothingnothingnothingnothingnothingnothingnothingnothingnothingnothingnothingnothingnothingnothingnothingnothingnothingnothingnothingnothingnothingnothingnothingnothingnothingnothingnothingnothing', NULL, 'default_pic.jpg', NULL, '2013-04-17 11:05:24', NULL, 0);
+(5, 'sheir', 'e10adc3949ba59abbe56e057f20f883e', 'mohamed_sheir@yahoo.com', '2743604', '01024791324', '0', '0', 'web', 'Monufia', '5', 'yes', 'yes', 'nothingnothingnothingnothingnothingnothingnothingnothingnothingnothingnothingnothingnothingnothingnothingnothingnothingnothingnothingnothingnothingnothingnothingnothingnothingnothingnothingnothingnothingnothingnothingnothingnothingnothingnothingnothingnothingnothingnothingnothingnothing', 'web develop', 'DSCF7144n2small1.jpg', NULL, '2013-04-18 18:56:24', NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -181,7 +204,14 @@ CREATE TABLE IF NOT EXISTS `user_events` (
   PRIMARY KEY (`id`),
   KEY `FK_user_events_1` (`user_id`),
   KEY `FK_user_events_2` (`event_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
+
+--
+-- Dumping data for table `user_events`
+--
+
+INSERT INTO `user_events` (`id`, `user_id`, `event_id`, `wait`, `confirm`) VALUES
+(6, 5, 15, 0, '1');
 
 -- --------------------------------------------------------
 
