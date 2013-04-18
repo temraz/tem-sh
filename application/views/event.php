@@ -244,7 +244,7 @@
 																	
 																		</span>
 																	</span>
-																	<p><?php echo $comment; ?></p>
+																	<p style="word-wrap:break-word"><?php echo $comment; ?></p>
 																	<span class="date pull-right"><?php echo $comment_date; ?></span>
 																</div>
 															</div>
