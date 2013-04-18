@@ -1,77 +1,61 @@
 <?php include('admin_header.php')?>
+
 <?php include('left_menu.php')?>
-		<title>Events</title>
+
+		<title>Add New Category</title>
 				
 <div class="span8" style="float:left ; margin-left:70px">
 
-<ul class="nav nav-pills sort-source" data-sort-id="portfolio" data-option-key="filter">
-						<li data-option-value=".websites" ><a href="<?php $id= $this->uri->segment(3); echo base_url()."admin/unconfirmed/".$id;?>">Unconfirmed</a></li>
-						<li data-option-value=".logos" class="active"><a href="<?php echo base_url()."admin/attends/".$id;?>">Attends</a></li>
-						
-					</ul>
-                    
-<table class="table table-striped">
+  
+                                <?php if (validation_errors()){ ?>
+                                <div class="alert alert-error">
+<button type="button" class="close" data-dismiss="alert">&times;</button>
+								<strong>Error! <?php  echo validation_errors(); ?></strong> 
+							</div>
+                                <?php } if(isset($inserted) && $inserted == 1){?>
+                                <div class="alert alert-success">
+								<button type="button" class="close" data-dismiss="alert">&times;</button>
+								<strong>Success!</strong> The  Category has been Deleted Successfuly. 
+							</div>
+                            <?php } ?>
+                            
+                            <?php  if(isset($inserted) && $inserted == 0){?>
+                                <div class="alert alert-falier">
+								<button type="button" class="close" data-dismiss="alert">&times;</button>
+								<strong>Falier!</strong>can't delete this category right now please try again later! 
+							</div>
+                            <?php } ?>
+                            
+                            
+                            
+								
+                                <table class="table table-striped">
 								<thead>
 									<tr>
-                                    <th>
-											#
+                                   
+										<th>
+											Category name
 										</th>
 										<th>
-											Username
+											Delete
 										</th>
-										<th>
-											Email
-										</th>
-										<th>
-											Job
-										</th>
-                                        <th>
-											City
-										</th>
-                                        <th>
-											Confirm
-										</th>
-									</tr>
-								</thead>
-								<tbody>
-                                <?php $count=1;
-								foreach($attends as $row){ 
-								$id = $row->id;
-								$user_id = $row->user_id;
-								$user_data=$this->admin_model->get_user_by_id($user_id);
-								foreach($user_data as $row){
-										$username = $row->name 	;
-										$email  = $row->email 	;
-										$job = $row->job 	;
-                                        $city  = $row->city 	;
-?>
-									<tr>
-                                    <td>
-											<?php echo $count; ?>
-										</td>
-										<td>
-											<?php echo $username; ?>
-										</td>
-										<td>
-											<?php echo $email; ?>
-										</td>
-                                        <td>
-											<?php echo $job; ?>
-										</td>
-                                        <td>
-											<?php echo $city; ?>
-										</td>
-                                       <td>
-											<i class="icon-ok" style="color:#060; margin-left:15px"></i>
-                                            </td>
-                                    
 										
 									</tr>
-                                    <?php 
-								}
-								$count++;
-								}?>
-                                    </tbody></table>
+								</thead>
+                                <tbody>
+                                
+                                <?php if(isset($cats)){ foreach($cats as $cat){?>
+									<tr>	
+										<td><?php echo $cat->name; ?></td>
+                                        <td><a href="<?php echo base_url();?>admin/delete_category/<?php echo $cat->id; ?>">	<i class="icon-remove" style="color:#900 ; margin-left:-6px "></i> remove</a></td>
+                                         </tr>
+								<?php }}?>
+                                
+                                
+                               
+                                </tbody>
+                                </table>
+                            </div>
 
 </div>
 		</div>

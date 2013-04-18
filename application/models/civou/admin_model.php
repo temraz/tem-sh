@@ -208,6 +208,7 @@ public function get_all_events(){
 			 $query = $this->db->get('events');
 	  return $query->result();
 	  }	
+	  
 	  /////////////////////////////
 	  public function get_unconfirmed($id){
 					$query = "select * from user_events where event_id=$id and confirm=0 and wait=1 ";
@@ -226,7 +227,22 @@ public function get_all_events(){
 			 $query = $this->db->get('users');
 	  return $query->result();
 	  }			
-	  
+	  ////////////////////////////////
+	  		  /////////////////////////////////
+public function get_category(){
+			 $query = $this->db->get('pic_dept');
+	  return $query->result();
+	  }	
+	  //////////////////////////////////////////
+	function delete_category($id){
+			$sql='delete from pic_dept where id=? ';
+	$result=$this->db->query($sql,$id);
+	if ($this->db->affected_rows()==1) {
+            return true;
+        } else {
+            return false;
+        }
+		}
 }
 
 

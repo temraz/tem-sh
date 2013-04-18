@@ -214,6 +214,140 @@ class Admin extends CI_Controller {
 		 redirect('admin');
 		} 
 	 }
+	//////////////////////////////////////////////
+	function add_category(){
+	if ($this->session->userdata('logged_in_admin')) {
+		$this->load->model('civou/admin_model');
+		$this->load->view('civou/add_category');
+		}else {
+		 redirect('admin');
+		} 
+		} 
+		//////////////////////////////////////////////
+	function add_sub_category(){
+	if ($this->session->userdata('logged_in_admin')) {
+		
+		$this->load->model('civou/admin_model');
+		if($this->admin_model->get_category()){
+			$data['cats']=$this->admin_model->get_category();
+			$this->load->view('civou/add_sub_category',$data);
+			}
+		
+		}else {
+		 redirect('admin');
+		} 
+		} 
+	//////////////////////////////////////////////////
+	function insert_category(){
+		$this->load->model('civou/admin_model');
+		  $flag['inserted']=0;
+		$this->load->library('form_validation');
+        $this->form_validation->set_rules('cat_name', 'Category Name', 'required|max_length[100]|trim|xss_clean|alpha');
+		
+       if ($this->form_validation->run()) {
+		    $data = array (
+	   'name' => $this->input->post('cat_name'),
+	   
+	   );
+		    if($this->db->insert('pic_dept',$data)){
+		  $flag['inserted']=1;
+		  $this->load->view('civou/add_category' , $flag);
+		  }
+	   else {
+		    $this->load->view('civou/add_category');
+		   }
+		   
+		  
+		   }else{
+        $this->load->model('civou/admin_model');
+		$this->load->view('civou/add_category');
+			   }
+		}
+		//////////////////////////////////////////////////
+	function insert_sub_category(){
+		$this->load->model('civou/admin_model');
+		  $flag['inserted']=0;
+		$this->load->library('form_validation');
+        $this->form_validation->set_rules('sub_cat_name', 'Sub Category Name', 'required|max_length[100]|trim|xss_clean|numirc');
+		 $this->form_validation->set_rules('cat_name', 'Sub Category Name', 'required|max_length[100]|trim|xss_clean');
+		
+       if ($this->form_validation->run()) {
+		    $data = array (
+		'dept_id' => $this->input->post('cat_name'),	
+	   'name' => $this->input->post('sub_cat_name'),
+	   
+	   );
+		    if($this->db->insert('pic_sub_dept',$data)){
+		  $flag['inserted']=1;
+		  $this->load->view('civou/add_sub_category' , $flag);
+		  }
+	   else {
+		    $this->load->view('civou/add_sub_category');
+		   }
+		   
+		  
+		   }else{
+        $this->load->model('civou/admin_model');
+		$this->load->view('civou/add_sub_category');
+			   }
+		}	
+	//////////////////////////////////////////////////////////
+	function photo_gallery(){
+		
+	if ($this->session->userdata('logged_in_admin')) {
+		$this->load->model('civou/admin_model');
+		if($this->admin_model->get_category()){
+			$data['cats']=$this->admin_model->get_category();
+			$data['users']=$this->admin_model->get_all_user();
+			$this->load->view('civou/add_photo_gallery',$data);
+			}
+		
+		}else {
+		 redirect('admin');
+		} 
+		} 
+	//////////////////////////////////////////////////////////
+	function show_delete_category(){
+		if ($this->session->userdata('logged_in_admin')) {
+		$this->load->model('civou/admin_model');
+		if($this->admin_model->get_category()){
+			$data['cats']=$this->admin_model->get_category();
+		
+			$this->load->view('civou/add_sub_category',$data);
+			}else{
+				$this->load->view('civou/add_sub_category');
+				}
+		
+		}else {
+		 redirect('admin');
+		} 
+		}
+	function delete_category(){
+		
+	if ($this->session->userdata('logged_in_admin')) {
+		if($this->uri->segment(3) != ''){
+		$id= $this->uri->segment(3);
+		$this->load->model('civou/admin_model');
+		if($this->admin_model->delete_category($id)){
+			$data['inserted']=1;
+			$data['cats']=$this->admin_model->get_category();
+			
+			$this->load->view('civou/add_sub_category',$data);
+			}else{
+				$data['inserted']=0;
+			$data['cats']=$this->admin_model->get_category();
+			
+			$this->load->view('civou/add_sub_category',$data);
+				}
+		
+		}else {
+		 redirect('admin');
+		} }else {
+		 redirect('admin');
+		} 
+		} 	
+		
+		
 }
 
 

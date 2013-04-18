@@ -1,12 +1,5 @@
 <?php include('admin_header.php')?>
-<li ><a href="<?php echo base_url(); ?>admin/panel">Unconfirmed Users  <strong>(<?php $this->load->model('civou/admin_model'); echo count($this->admin_model->get_unconfirmed_user()); ?>)</a></strong></a></li>
-									<li><a href="<?php echo base_url(); ?>admin/users">Actived Users <strong>(<?php $this->load->model('civou/admin_model'); echo count($this->admin_model->get_confirmed_user()); ?>)</strong></a></li>
-								 <li><a href="<?php echo base_url(); ?>admin/events">New Event</a></li>
-                                  <li class="active"><a href="<?php echo base_url(); ?>admin/allevents">Events</a></li>	
-								</ul>
-                                
-							</aside>
-						</div>
+<?php include('left_menu.php')?>
 		<title>Events</title>
 				
 <div class="span8" style="float:left ; margin-left:70px">

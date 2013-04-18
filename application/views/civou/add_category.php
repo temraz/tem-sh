@@ -1,77 +1,33 @@
 <?php include('admin_header.php')?>
 <?php include('left_menu.php')?>
-		<title>Events</title>
+
+		<title>Add New Category</title>
 				
 <div class="span8" style="float:left ; margin-left:70px">
 
-<ul class="nav nav-pills sort-source" data-sort-id="portfolio" data-option-key="filter">
-						<li data-option-value=".websites" ><a href="<?php $id= $this->uri->segment(3); echo base_url()."admin/unconfirmed/".$id;?>">Unconfirmed</a></li>
-						<li data-option-value=".logos" class="active"><a href="<?php echo base_url()."admin/attends/".$id;?>">Attends</a></li>
-						
-					</ul>
-                    
-<table class="table table-striped">
-								<thead>
-									<tr>
-                                    <th>
-											#
-										</th>
-										<th>
-											Username
-										</th>
-										<th>
-											Email
-										</th>
-										<th>
-											Job
-										</th>
-                                        <th>
-											City
-										</th>
-                                        <th>
-											Confirm
-										</th>
-									</tr>
-								</thead>
-								<tbody>
-                                <?php $count=1;
-								foreach($attends as $row){ 
-								$id = $row->id;
-								$user_id = $row->user_id;
-								$user_data=$this->admin_model->get_user_by_id($user_id);
-								foreach($user_data as $row){
-										$username = $row->name 	;
-										$email  = $row->email 	;
-										$job = $row->job 	;
-                                        $city  = $row->city 	;
-?>
-									<tr>
-                                    <td>
-											<?php echo $count; ?>
-										</td>
-										<td>
-											<?php echo $username; ?>
-										</td>
-										<td>
-											<?php echo $email; ?>
-										</td>
-                                        <td>
-											<?php echo $job; ?>
-										</td>
-                                        <td>
-											<?php echo $city; ?>
-										</td>
-                                       <td>
-											<i class="icon-ok" style="color:#060; margin-left:15px"></i>
-                                            </td>
-                                    
-										
-									</tr>
-                                    <?php 
-								}
-								$count++;
-								}?>
-                                    </tbody></table>
+  <?php echo form_open_multipart('admin/insert_category'); ?>
+                                <?php if (validation_errors()){ ?>
+                                <div class="alert alert-error">
+<button type="button" class="close" data-dismiss="alert">&times;</button>
+								<strong>Error! <?php  echo validation_errors(); ?></strong> 
+							</div>
+                                <?php } if(isset($inserted) && $inserted == 1){?>
+                                <div class="alert alert-success">
+								<button type="button" class="close" data-dismiss="alert">&times;</button>
+								<strong>Success!</strong> The Category has been inserted Successfuly. 
+							</div>
+                            <?php } ?>
+								<div class="row controls" id="contactForm">
+                              
+									<div class="span3 control-group" style="width:100%">
+										<label>Category Name *</label>
+										<input type="text" value="" maxlength="100" class="span3" name="cat_name"  required>
+									</div>
+                           <div class="btn-toolbar" style="margin-left:30px">
+									<input type="submit" value="Save" class="btn btn-primary btn-large" data-loading-text="Loading...">
+								</div>
+							 <?php echo form_close();?>
+                            </div>
 
 </div>
 		</div>

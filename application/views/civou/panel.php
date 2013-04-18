@@ -1,11 +1,6 @@
 <?php include('admin_header.php')?>
-<li class="active"><a href="<?php echo base_url(); ?>admin/panel">Unconfirmed Users  <strong>(<?php $this->load->model('civou/admin_model'); echo count($this->admin_model->get_unconfirmed_user()); ?>)</a></strong></a></li>
-									<li><a href="<?php echo base_url(); ?>admin/users">Actived Users <strong>(<?php $this->load->model('civou/admin_model'); echo count($this->admin_model->get_confirmed_user()); ?>)</strong></a></li>
-								 <li><a href="<?php echo base_url(); ?>admin/events">New Event</a></li>
-                                  <li><a href="<?php echo base_url(); ?>admin/allevents">Events</a></li>	
-								</ul>
-							</aside>					
-						</div>
+<?php include('left_menu.php')?>
+
 		<title>Unconfirmed Users</title>
 				
 <div class="span8" style="float:left ; margin-left:70px">
@@ -56,7 +51,7 @@ $regist_date  = $row->regist_date	;
 											<?php echo $regist_date; ?>
 										</td>
 										<td>
-											<i class="icon-remove" style="color:#900 ; margin-left:15px "></i></a>
+										<a href="">	<i class="icon-remove" style="color:#900 ; margin-left:15px "></i></a>
 										</td>
                                         <td>
 											<a href="<?php base_url();?>confirm/<?php echo $id ;?>"><small style="color:#060">Confirm</small></a>
