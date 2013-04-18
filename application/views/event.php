@@ -149,7 +149,7 @@
 												<span><i class="icon-calendar"></i> <?php echo $event_date ; ?> </span>
 												<span><i class="icon-facebook"></i> <a href="<?php echo $facebook ; ?>"><?php echo $event_name ; ?>'s Facebook Page</a> </span>
 												<span><i class="icon-twitter"></i><a href="<?php echo $twitter ; ?>"><?php echo $event_name ; ?>'s twitter Page</a> </span>
-												<span><i class="icon-comments"></i> <a href="#">12 Comments</a></span>
+												<span><i class="icon-comments"></i> <?php echo $count_comments; ?> Comments</span>
                                                 
                                                 
                                                 
@@ -164,13 +164,96 @@
 								<a href="<?php echo base_url()."home/attend/".$event_id;?>" class="btn  btn-primary pull-right" style="">Attend</a>
 							<?php	}
 												}else {
-													echo "<span style=\"float:right; color:#F00\">You Must Sign In to to see Attend Option..</span>";
+													echo "<span style=\"float:right; color:#F00\">You Must Sign In to to see Attend and Comment Option..</span>";
 													}?>
 												
 											</div>
 										</div>
 									</div>
-
+                                    <?php if($count_comments == 0 && (!$this->session->userdata('logged_in'))){?>
+                                    <center><span style="color:#069">There are no Comments</span></center>
+                                    <?php }?>
+                                    <?php 
+									if(($this->session->userdata('logged_in'))){
+                                    $this->load->model('event_model');
+									$user_id = $this->session->userdata('user_id');
+							$user_date= $this->event_model->get_user_by_id($user_id);
+							foreach ($user_date as $row){
+								$name = $row->name; 
+							$pic = $row->pic ;
+							?>
+                                    <div class="container">
+                                    <div class="span3">
+                                    </div>
+                                    <div class="span8">
+<ul class="comments reply">
+<?php echo form_open('home/add_comment/'.$event_id); ?>
+														<li>
+															<div class="comment">
+																<div class="thumbnail">
+																	<img class="avatar" alt="" src="<?php echo base_url();?>/images/profile/<?php echo $pic; ?>" >
+																</div>
+																<div class="comment-block">
+																	<div class="comment-arrow"></div>
+																	<span class="comment-by">
+																		<strong><?php echo $name; ?></strong>
+																		<span class="pull-right">
+																		</span>
+																	</span>
+                                                                    <span><?php  echo validation_errors(); ?></span>
+																	<p><textarea name="comment" class="span6" required></textarea></p>
+																	<span> <button class="btn btn-small pull-right" ><i class="icon-reply"></i> Comment</button></span>
+																</div>
+															</div>
+														</li>
+                                                       <?php echo form_close();?>
+                                                        </ul>
+                                                        </div>
+                                                        <?php 
+							}
+							}?>
+                                                        
+                                                        <?php  foreach ($comments as $row){
+							$event_id = $row->event_id; 
+							$user_id = $row->user_id ;
+							$comment_date = $row->comment_date ;
+							$comment = $row->comment ;
+							
+							$this->load->model('event_model');
+							$user_date= $this->event_model->get_user_by_id($user_id);
+							foreach ($user_date as $row){
+								$name = $row->name; 
+							$pic = $row->pic ;
+							
+							?>
+                                                        </div> <div class="container">
+                                    <div class="span3">
+                                    </div>
+                                    <div class="span8">
+<ul class="comments reply">
+														<li>
+															<div class="comment">
+																<div class="thumbnail">
+																	<img class="avatar" alt="" src="<?php echo base_url();?>/images/profile/<?php echo $pic; ?>" tppabs="http://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50">
+																</div>
+																<div class="comment-block">
+																	<div class="comment-arrow"></div>
+																	<span class="comment-by">
+																		<strong><?php echo $name; ?></strong>
+																		<span class="pull-right">
+																	
+																		</span>
+																	</span>
+																	<p><?php echo $comment; ?></p>
+																	<span class="date pull-right"><?php echo $comment_date; ?></span>
+																</div>
+															</div>
+														</li>
+                                                        </ul>
+                                                        </div>
+                                                        </div>
+                                                        <?php }
+														}?>
 								</article>
 				</div>
 

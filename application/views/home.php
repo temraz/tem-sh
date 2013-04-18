@@ -100,7 +100,7 @@
 											 data-easing="easeOutExpo">DO YOU WANT TO EXPLOIT</div>
 
 										<div class="caption sft stb visible-desktop"
-											 data-x="402"
+											 data-x="420"
 											 data-y="180"
 											 data-speed="300"
 											 data-start="1000"
