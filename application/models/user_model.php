@@ -122,8 +122,23 @@ function do_upload($id){
 					}
 			    ///////////////////////////////////////////////////////////		 
 					
+					public function get_user_by_id($id){
+     	$this->db->where('id',$id);
+			 $query = $this->db->get('users');
+	  return $query->result();
+	  }		
+	  //////////////////////////////
+	  public function get_posts($user_id){
+				$query = "select * from user_posts where user_id=$user_id ORDER BY id DESC ";
+					$result=$this->db->query($query);
+				return $result->result();
+				}
 					
-					
+					public function get_comments($post_id){
+				$query = "select * from post_comments where post_id=$post_id  ";
+					$result=$this->db->query($query);
+				return $result->result();
+				}
 					
 }
 

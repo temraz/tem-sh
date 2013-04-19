@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Apr 18, 2013 at 07:17 PM
+-- Generation Time: Apr 19, 2013 at 10:39 PM
 -- Server version: 5.5.16
 -- PHP Version: 5.3.8
 
@@ -79,7 +79,7 @@ CREATE TABLE IF NOT EXISTS `event_comments` (
   `comment` varchar(550) CHARACTER SET utf32 NOT NULL,
   `comment_date` varchar(50) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=14 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=15 ;
 
 --
 -- Dumping data for table `event_comments`
@@ -87,7 +87,8 @@ CREATE TABLE IF NOT EXISTS `event_comments` (
 
 INSERT INTO `event_comments` (`id`, `user_id`, `event_id`, `comment`, `comment_date`) VALUES
 (12, 5, 15, 'test', 'Apr 18, 2013, Thu 6:48 pm'),
-(13, 1, 15, 'al-event da gamd bas :)', 'Apr 18, 2013, Thu 6:58 pm');
+(13, 1, 15, 'al-event da gamd bas :)', 'Apr 18, 2013, Thu 6:58 pm'),
+(14, 5, 15, 'ddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd', 'Apr 18, 2013, Thu 8:10 pm');
 
 -- --------------------------------------------------------
 
@@ -114,6 +115,34 @@ CREATE TABLE IF NOT EXISTS `pic_sub_dept` (
   PRIMARY KEY (`id`),
   KEY `FK_sub_dept_1` (`dept_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `post_comments`
+--
+
+CREATE TABLE IF NOT EXISTS `post_comments` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `post_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `comment` varchar(550) CHARACTER SET utf32 NOT NULL,
+  `comment_date` varchar(55) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=12 ;
+
+--
+-- Dumping data for table `post_comments`
+--
+
+INSERT INTO `post_comments` (`id`, `post_id`, `user_id`, `comment`, `comment_date`) VALUES
+(5, 2, 5, 'estana bas ya 3am ', 'Apr 19, 2013, Fri 6:36 pm'),
+(6, 1, 1, 'welcome ya abo sheir', 'Apr 19, 2013, Fri 7:01 pm'),
+(7, 4, 5, 'welcome ya temraz', 'Apr 19, 2013, Fri 7:27 pm'),
+(8, 4, 1, 'thanks  ^_^ ', 'Apr 19, 2013, Fri 7:37 pm'),
+(9, 2, 1, 'feh eh bas ??', 'Apr 19, 2013, Fri 7:38 pm'),
+(10, 2, 5, 'neset aktb al echo [[fakss]] ', 'Apr 19, 2013, Fri 7:45 pm'),
+(11, 2, 1, 'hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh lol =D', 'Apr 19, 2013, Fri 7:49 pm');
 
 -- --------------------------------------------------------
 
@@ -256,7 +285,16 @@ CREATE TABLE IF NOT EXISTS `user_posts` (
   `content` varchar(450) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `FK_user_posts_1` (`user_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
+
+--
+-- Dumping data for table `user_posts`
+--
+
+INSERT INTO `user_posts` (`id`, `user_id`, `post_date`, `content`) VALUES
+(1, 5, '2013-04-19 16:59:42', 'welcome'),
+(2, 5, '2013-04-19 18:13:30', 'test 2'),
+(4, 1, '2013-04-19 18:54:41', 'ana temraz ');
 
 -- --------------------------------------------------------
 

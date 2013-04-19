@@ -74,8 +74,9 @@
 
 		<div class="body">
 			<?php include('header.php')?>
+            
 			<div role="main" class="main">
-
+<?php  if(($this->session->userdata('logged_in'))){?>
 				<section class="page-top">
 					<div class="container">
 						<div class="row">
@@ -88,14 +89,25 @@
 						</div>
 						<div class="row">
 							<div class="span12">
-								
-							<img class="thumbnail" src="<?php echo base_url();?>images/profile/thumb_profile/<?php if(isset($pic)){ echo $pic ; } ?>"  alt="" style="float:left ; margin-top:10px"  width="100"  > 
-														<h3 style="margin-top:55px ;float:left  ; margin-left:15px ; color:#fff;text-transform:capitalize"><?php if(isset($username)){echo $username ;}?></h3>
+								<?php 
+						$current_id = $this->session->userdata('user_id');
+						$current_date= $this->user_model->get_user_by_id($current_id);
+							foreach ($current_date as $row){
+								$current_name = $row->name; 
+							$current_pic = $row->pic ;
+							}
+
+?>
+							<img class="thumbnail" src="<?php echo base_url();?>images/profile/thumb_profile/<?php if(isset($current_pic)){ echo $current_pic ; } ?>"  alt="" style="float:left ; margin-top:10px"  width="100"  > 
+														<h3 style="margin-top:55px ;float:left  ; margin-left:15px ; color:#fff;text-transform:capitalize"><?php if(isset($current_name)){echo $current_name ;}?></h3>
 													
 							</div>
 						</div>
 					</div>
 				</section>
+<?php }else {?>
+<hr class="light">
+<?php } ?>
 
 				<div class="container">
 
@@ -118,7 +130,9 @@
                                                     <div class="post-meta">
 														<i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i>
 													</div>
+                                                    <?php if(($this->session->userdata('logged_in')) && $segment_id == $current_id){?>
                                                     <div class="icon-edit"><a href="#">edit</a></div>
+                                                    <?php }?>
                                                     </div>
 											</div>		
                                              <?php
@@ -142,7 +156,10 @@
                                 ?> 
 
 								<h4 style="float:left">About <span style="text-transform:capitalize" > <?php if(isset($username)){echo $username ;}?></span>
-                                </h4><div class="icon-edit" style="float:left ; margin-left:5px ; margin-top:8px"><a href="#">edit</a></div>
+                                </h4>
+                                <?php if(($this->session->userdata('logged_in')) && $segment_id == $current_id){?>
+                                <div class="icon-edit" style="float:left ; margin-left:5px ; margin-top:8px"><a href="#">edit</a></div>
+                                                    <?php }?>
                                 </br> </br>
 								<p style="float:left;word-wrap:break-word;width:270px;">
 									<?php if(isset($hobbit)){echo nl2br($hobbit) ;}?>
@@ -366,134 +383,156 @@
                             
 						<div class="span9" style="margin-top:-40px">
 
+<?php 
+						$user_id = $this->session->userdata('user_id');
+						$user_date= $this->user_model->get_user_by_id($user_id);
+							foreach ($user_date as $row){
+								$name = $row->name; 
+							$pic = $row->pic ;
+							}
+
+?>
 							<div class="post-content">
 
 										<div class="post-block post-comments clearfix">
-											<h3 style="color:#09c"><i class="icon-comments" style="color:#09c"></i>News Feed</h3>
-
+											<h3 style="color:#09c"><i class="icon-comments" style="color:#09c"></i>Latest Posts</h3>
+											<?php if(($this->session->userdata('logged_in')) && $segment_id == $user_id){?>
 											<ul class="comments">
 												<li>
+                                                <?php echo form_open('user/add_post'); ?>
 													<div class="comment">
 														<div class="thumbnail">
-															<img class="avatar" alt="" src="<?php echo base_url();?>images/sheir.jpg" tppabs="http://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50">
+															<img class="avatar" alt="" src="<?php echo base_url();?>/images/profile/<?php echo $pic; ?>">
 														</div>
 														<div class="comment-block">
 															<div class="comment-arrow"></div>
 															<span class="comment-by">
-																<strong>Mohamed Samy</strong>
+																<strong></strong>
 																<span class="pull-right">
-																	<span> <a href="#"><i class="icon-reply"></i> Reply</a></span>
+																	
 																</span>
 															</span>
-															<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae, gravida pellentesque urna varius vitae. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae. Sed dui lorem, adipiscing in adipiscing et, interdum nec metus. Mauris ultricies, justo eu convallis placerat, felis enim ornare nisi, vitae mattis nulla ante id dui.</p>
-															<span class="date pull-right">January 12, 2013 at 1:38 pm</span>
+                                                             <span><?php  echo validation_errors(); ?></span>
+															<p><textarea name="post" class="span7"  placeholder="What's on your mind?" required></textarea></p>
+															<span ><button class="btn btn-info btn-small pull-right" ><strong>Post</strong></button></span>
 														</div>
 													</div>
+                                                    <?php echo form_close();?>
+                                                    </li></ul>
+													<hr class="light">
+													<?php }?>
 
-													<ul class="comments reply">
-														<li>
-															<div class="comment">
-																<div class="thumbnail">
-																	<img class="avatar" alt="" src="<?php echo base_url();?>images/205e460b479e2e5b48aec07710c08d50.jpg" tppabs="http://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50">
-																</div>
-																<div class="comment-block">
-																	<div class="comment-arrow"></div>
-																	<span class="comment-by">
-																		<strong>John Doe</strong>
-																		<span class="pull-right">
-																			<span> <a href="#"><i class="icon-reply"></i> Reply</a></span>
-																		</span>
-																	</span>
-																	<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae, gravida pellentesque urna varius vitae.</p>
-																	<span class="date pull-right">January 12, 2013 at 1:38 pm</span>
-																</div>
-															</div>
-														</li>
-														<li>
-															<div class="comment">
-																<div class="thumbnail">
-																	<img class="avatar" alt="" src="<?php echo base_url();?>images/205e460b479e2e5b48aec07710c08d50.jpg" tppabs="http://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50">
-																</div>
-																<div class="comment-block">
-																	<div class="comment-arrow"></div>
-																	<span class="comment-by">
-																		<strong>John Doe</strong>
-																		<span class="pull-right">
-																			<span> <a href="#"><i class="icon-reply"></i> Reply</a></span>
-																		</span>
-																	</span>
-																	<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae, gravida pellentesque urna varius vitae.</p>
-																	<span class="date pull-right">January 12, 2013 at 1:38 pm</span>
-																</div>
-															</div>
-														</li>
-													</ul>
-												</li>
-												
-											</ul>
-                                            
-                                            <hr class="light">
+													
                                             
                                             
+                                            
+                                            <?php  
+											if(count($posts) != 0 ){
+											foreach ($posts as $row){
+							$post_id = $row->id;	
+							$post_user_id = $row->user_id;				
+							$content = $row->content ;
+							$post_date = $row->post_date ;
+												$user_data= $this->user_model->get_user_by_id($post_user_id);
+							foreach ($user_data as $row){
+								$username_post = $row->name; 
+							$pic_post = $row->pic ;
+							?>
+                            
+                            
                                             <ul class="comments">
 												<li>
 													<div class="comment">
 														<div class="thumbnail">
-															<img class="avatar" alt="" src="<?php echo base_url();?>images/sheir.jpg" tppabs="http://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50">
+															<img class="avatar" alt="" src="<?php echo base_url();?>/images/profile/<?php echo $pic_post; ?>">
 														</div>
-														<div class="comment-block">
+														<div class="comment-block" >
 															<div class="comment-arrow"></div>
 															<span class="comment-by">
-																<strong>Mohamed Samy</strong>
+																<strong><?php echo $username_post; ?></strong>
 																<span class="pull-right">
-																	<span> <a href="#"><i class="icon-reply"></i> Reply</a></span>
 																</span>
 															</span>
-															<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae, gravida pellentesque urna varius vitae. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae. Sed dui lorem, adipiscing in adipiscing et, interdum nec metus. Mauris ultricies, justo eu convallis placerat, felis enim ornare nisi, vitae mattis nulla ante id dui.</p>
-															<span class="date pull-right">January 12, 2013 at 1:38 pm</span>
+															<p style="word-wrap:break-word"><?php echo $content; ?></p>
+															<span class="date pull-right"><?php echo $post_date; ?></span>
 														</div>
 													</div>
-
+                                  
 													<ul class="comments reply">
+                                                  
+                                                         <?php $comments = $this->load->user_model->get_comments($post_id);
+														 foreach ($comments as $r){
+														 $user_comment_id = $r->user_id;
+														 $comment = $r->comment;
+														 $comment_date = $r->comment_date;
+														 $user_data= $this->user_model->get_user_by_id($user_comment_id);
+														 
+							foreach ($user_data as $row){
+								$username_comment = $row->name; 
+							$pic_comment = $row->pic ;
+														  ?>
 														<li>
 															<div class="comment">
 																<div class="thumbnail">
-																	<img class="avatar" alt="" src="<?php echo base_url();?>images/temraz.jpg" tppabs="http://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50">
+																	<?php if($user_comment_id != $segment_id){?>
+                                                              <a href="<?php echo base_url();?>user/profile/<?php echo $user_comment_id ;?>" >
+															  <?php }?>
+                                                    <img class="avatar" alt="" src="<?php echo base_url();?>/images/profile/<?php echo $pic_comment; ?>">
+                                                                     </strong><?php if($user_comment_id != $segment_id){?></a><?php }?>
+																</div>
+																<div class="comment-block" >
+																	<div class="comment-arrow"></div>
+																	<span class="comment-by">
+																		<?php if($user_comment_id != $segment_id){?>
+                                                              <a href="<?php echo base_url();?>user/profile/<?php echo $user_comment_id ;?>" >
+															  <?php }?>
+                                                                        <strong><?php echo $username_comment; ?>
+                                                                        </strong><?php if($user_comment_id != $segment_id){?></a><?php }?>
+																		<span class="pull-right">
+																		</span>
+																	</span>
+																	<p style="word-wrap:break-word"><?php echo $comment; ?></p>
+																	<span class="date pull-right"><?php echo $comment_date; ?></span>
+																</div>
+															</div>
+														</li>
+                                                        <?php 
+							}
+							}
+														?>
+                                                        
+                                                          <?php if(($this->session->userdata('logged_in'))){?>
+                                                    <?php echo form_open('user/add_comment/'.$post_id.'/'.$segment_id); ?>
+														<li>
+															<div class="comment">
+																<div class="thumbnail">
+																	<img class="avatar" alt="" src="<?php echo base_url();?>/images/profile/<?php echo $pic; ?>" >
 																</div>
 																<div class="comment-block">
 																	<div class="comment-arrow"></div>
 																	<span class="comment-by">
-																		<strong>Mohamed Temraz</strong>
+																		<strong><?php $name ; ?></strong>
 																		<span class="pull-right">
-																			<span> <a href="#"><i class="icon-reply"></i> Reply</a></span>
+																			
 																		</span>
 																	</span>
-																	<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae, gravida pellentesque urna varius vitae.</p>
-																	<span class="date pull-right">January 12, 2013 at 1:38 pm</span>
+                                                                    <span><?php  echo validation_errors(); ?></span>
+																	<p><textarea name="comment" class="span6" placeholder="Write a comment..."  required></textarea></p>
+																	<span> <button class="btn btn-small pull-right" ><i class="icon-reply"></i> Comment</button></span>
 																</div>
 															</div>
 														</li>
-														<li>
-															<div class="comment">
-																<div class="thumbnail">
-																	<img class="avatar" alt="" src="<?php echo base_url();?>images/205e460b479e2e5b48aec07710c08d50.jpg" tppabs="http://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50">
-																</div>
-																<div class="comment-block">
-																	<div class="comment-arrow"></div>
-																	<span class="comment-by">
-																		<strong>John Doe</strong>
-																		<span class="pull-right">
-																			<span> <a href="#"><i class="icon-reply"></i> Reply</a></span>
-																		</span>
-																	</span>
-																	<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae, gravida pellentesque urna varius vitae.</p>
-																	<span class="date pull-right">January 12, 2013 at 1:38 pm</span>
-																</div>
-															</div>
-														</li>
+                                                         <?php echo form_close();?>
+                                                         <?php } ?>
+                                                        
 													</ul>
 												</li>
-												
+											<?php }?>
+											<hr class="light">
+											<?php }
+											}else{?>
+												<center><span>There are not posts </span></center>
+												<?php }?>	
 											</ul>
 
 

@@ -137,7 +137,8 @@ public function profile()
 
                 $login_data = array("logged_in" => true, "user_id" => $user['id'], "user_email" => $user['email']);
                 $this->session->set_userdata($login_data);
-                redirect('user/profile');
+				$id=$this->session->userdata('user_id');
+                redirect('user/profile/'.$id);
             } else {
 
                 redirect('home/error');

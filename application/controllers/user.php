@@ -8,10 +8,13 @@ class User extends CI_Controller {
     }
     ///////////////////
     function profile(){
-         if ($this->session->userdata('logged_in')) {
-             
-			$id=$this->session->userdata('user_id');
+		
+         if ( $this->uri->segment(3) != '') {
+             $this->load->model('user_model');
+			$id=$this->uri->segment(3);
+			$data['segment_id']=$this->uri->segment(3);
 			$this->load->model('site_model');
+			$data['posts'] =$this->user_model->get_posts($id);
 			if($this->site_model->select_user($id)){				
 				$user_data=$this->site_model->select_user($id);
 				$data['user_id']=$user_data['id']; 
@@ -77,7 +80,7 @@ class User extends CI_Controller {
             
             $this->load->library('form_validation');
 		
-			$this->form_validation->set_rules('time', 'Time', 'required|trim|max_length[2]|xss_clean|numeric');
+			$this->form_validation->set_rules('time', 'Time', 'required|trim|max_length[2]|xss_clean');
 			$this->form_validation->set_rules('about', 'About', 'required|max_length[500]|trim|xss_clean');
 			$this->form_validation->set_rules('travel', 'Travel', 'required|max_length[30]|trim|xss_clean');
 			$this->form_validation->set_rules('faculty', 'Faculty', 'required|max_length[130]|trim|xss_clean');
@@ -301,6 +304,60 @@ class User extends CI_Controller {
 		
 		
 		}
+		public function add_post()
+	{
+		/*if ($this->session->userdata('logged_in')) {*/
+			$user_id = $this->session->userdata('user_id');
+			$content = $this->input->post('post');
+			$date = date("M j, Y, D g:i a");
+			$this->load->library('form_validation');
+			 $this->form_validation->set_rules('post', 'Post', 'required|max_length[500]|trim|xss_clean');
+			 if ($this->form_validation->run()) {
+			$this->load->model('event_model');
+			
+			$data = array( 'user_id'=>$user_id , 
+			'content'=>$content,
+			);
+			if($this->db->insert('user_posts',$data)){
+				redirect('user/profile/'.$user_id);
+				}
+			 }else {
+				 redirect('home/profile'.$user_id);
+				 }
+	/*}
+	else{
+            redirect('home');
+        }*/
+	}
+	
+	public function add_comment()
+	{
+		/*if ($this->session->userdata('logged_in')) {*/
+			$user_id = $this->session->userdata('user_id');
+			$post_id= $this->uri->segment(3);
+			$segment_id= $this->uri->segment(4);
+			$comment = $this->input->post('comment');
+			$date = date("M j, Y, D g:i a");
+			$this->load->library('form_validation');
+			 $this->form_validation->set_rules('comment', 'Comment', 'required|max_length[500]|trim|xss_clean');
+			 if ($this->form_validation->run()) {
+			$this->load->model('user_model');
+			
+			$data = array( 'user_id'=>$user_id , 
+			'post_id'=>$post_id,
+			'comment'=>$comment,
+			'comment_date'=>$date);
+			if($this->db->insert('post_comments',$data)){
+				redirect('user/profile/'.$segment_id);
+				}
+			 }else {
+				 redirect('user/profile/'.$segment_id);
+				 }
+	/*}
+	else{
+            redirect('home');
+        }*/
+	}
 		
 	
 	

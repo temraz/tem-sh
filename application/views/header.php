@@ -41,7 +41,7 @@
                             
                            <?php if($this->session->userdata('logged_in')){?>
                                                          <li>
-								<a href="<?php echo base_url();?>user/profile" >My profile</a>
+								<a href="<?php echo base_url();?>user/profile/" >My profile</a>
 							</li>
 							<?php }?>
 			    
